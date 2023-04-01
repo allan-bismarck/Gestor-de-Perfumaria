@@ -21,7 +21,7 @@ abstract class AppDataBase: RoomDatabase() {
                 if(instance == null) {
                     instance = Room.databaseBuilder(
                         context,
-                        AppDataBase::class.java, "database-name"
+                        AppDataBase::class.java, "db-perfumery"
                     ).build()
                 }
                 return instance

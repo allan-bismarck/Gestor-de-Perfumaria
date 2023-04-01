@@ -17,6 +17,9 @@ interface BrandDAO {
     @Query("DELETE FROM brand WHERE id = :id")
     suspend fun delete(id: Long)
 
+    @Query("SELECT * FROM brand WHERE id = :id")
+    fun get(id: Long): LiveData<BrandEntity>
+
     @Query("DELETE FROM brand")
     suspend fun deleteAll()
 
