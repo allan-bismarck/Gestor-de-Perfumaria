@@ -11,18 +11,18 @@ interface BrandDAO {
     @Insert
     suspend fun insert(brand: BrandEntity): Long
 
-    @Update
-    suspend fun update(brand: BrandEntity)
+    @Query("UPDATE brand SET name = :nameUpdate, profit = :profitUpdate WHERE id = :id")
+    suspend fun update(nameUpdate: String, profitUpdate: Float, id: Long)
 
     @Query("DELETE FROM brand WHERE id = :id")
     suspend fun delete(id: Long)
 
     @Query("SELECT * FROM brand WHERE id = :id")
-    fun get(id: Long): LiveData<BrandEntity>
+    fun get(id: Long): BrandEntity
 
     @Query("DELETE FROM brand")
     suspend fun deleteAll()
 
     @Query("SELECT * FROM brand")
-    fun getAll(): LiveData<List<BrandEntity>>
+    fun getAll(): List<BrandEntity>
 }

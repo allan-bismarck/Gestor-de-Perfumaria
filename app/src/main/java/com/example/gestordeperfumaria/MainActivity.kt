@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             applicationContext,
             AppDataBase::class.java,
             "db-perfumery"
-        ).build()
+        ).allowMainThreadQueries().build()
 
         binding.btnRegister.setOnClickListener {
             dbInsertBrand("Avon", 0.2f)
@@ -35,8 +35,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.btnMonitor.setOnClickListener {
-            //dbShowBrands()
-            dbDeleteBrand(10)
+            dbShowAllBrands()
+            //dbShowBrand(23)
+            //dbDeleteBrand(10)
+            //dbDeleteAllBrands()
+            //dbUpdateBrand(BrandEntity(0, "Boticario", 0.15f), 25)
             startActivity(Intent(this, MonitorActivity::class.java))
         }
     }
@@ -52,9 +55,14 @@ class MainActivity : AppCompatActivity() {
         insertBrands.join()
     }
 
-    private fun dbShowBrands() = runBlocking {
+    private fun dbShowAllBrands() = runBlocking{
         var brandList = async { db.brandDAO.getAll() }
-        Log.i("brandList", brandList.await().value?.size.toString())
+        Log.i("brandList", brandList.await().toString())
+    }
+
+    private fun dbShowBrand(id: Long) = runBlocking {
+        var brand = async { db.brandDAO.get(id) }
+        Log.i("brandList", brand.await().toString())
     }
 
     private fun dbDeleteBrand(id: Long) = runBlocking {
@@ -62,5 +70,21 @@ class MainActivity : AppCompatActivity() {
             db.brandDAO.delete(id)
         }
         deleteBrand.join()
+    }
+
+    private fun dbDeleteAllBrands() = runBlocking {
+        val deleteAllBrands = launch {
+            db.brandDAO.deleteAll()
+        }
+        deleteAllBrands.join()
+    }
+
+    private fun dbUpdateBrand(brand: BrandEntity, id: Long) = runBlocking {
+        val updateBrand = launch {
+            val nameUpdate = brand.name
+            val profitUpdate = brand.profit
+            db.brandDAO.update(nameUpdate, profitUpdate, id)
+        }
+        updateBrand.join()
     }
 }
