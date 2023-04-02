@@ -8,5 +8,6 @@ data class CosmeticEntity (
     var id: Long = 0,
     var name: String,
     var nameBrand: String,
+    var date: String,
     var price: Float
 )
