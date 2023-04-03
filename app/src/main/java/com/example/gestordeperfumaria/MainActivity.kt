@@ -42,13 +42,14 @@ class MainActivity : AppCompatActivity() {
         binding.btnMonitor.setOnClickListener {
             //dbShowAllBrands()
             //dbShowBrand(23)
-            dbDeleteBrand(3)
+            //dbDeleteBrand(3)
             //dbDeleteAllBrands()
             //dbUpdateBrand("Boticario", 0.15f, 25)
             //dbShowAllCosmetics()
             //dbDeleteCosmetic(2)
             //dbDeleteAllCosmetics()
             //dbUpdateCosmetic("Colonia", 2, 25.0f, 6)
+            dbShowBrandWithCosmetics(1)
             startActivity(Intent(this, MonitorActivity::class.java))
         }
     }
@@ -148,5 +149,13 @@ class MainActivity : AppCompatActivity() {
             db.cosmeticDAO.update(name, idBrand, price, id)
         }
         updateCosmetic.join()
+    }
+
+    private fun dbShowBrandWithCosmetics(id: Long) = runBlocking {
+        val showBrandWithCosmetics = launch {
+            val brandWithCosmeticList =  async { db.brandWithCosmeticDAO.getBrandsWithCosmetics() }.await()
+            Log.i("BrandWithCosmetics", brandWithCosmeticList.toString())
+        }
+        showBrandWithCosmetics.join()
     }
 }

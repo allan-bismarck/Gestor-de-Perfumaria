@@ -10,6 +10,7 @@ abstract class AppDataBase: RoomDatabase() {
 
     abstract val brandDAO: BrandDAO
     abstract val cosmeticDAO: CosmeticDAO
+    abstract val brandWithCosmeticDAO: BrandWithCosmeticDAO
 
     companion object {
         @Volatile
