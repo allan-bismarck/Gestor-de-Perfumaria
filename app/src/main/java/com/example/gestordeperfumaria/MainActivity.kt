@@ -43,8 +43,10 @@ class MainActivity : AppCompatActivity() {
             //dbShowBrand(23)
             //dbDeleteBrand(10)
             //dbDeleteAllBrands()
-            //dbUpdateBrand(BrandEntity(0, "Boticario", 0.15f), 25)
-            dbShowAllCosmetics()
+            //dbUpdateBrand("Boticario", 0.15f, 25)
+            //dbShowAllCosmetics()
+            //dbDeleteCosmetic(2)
+            dbUpdateCosmetic("Colonia", "Avon", 25.0f, 6)
             startActivity(Intent(this, MonitorActivity::class.java))
         }
     }
@@ -84,11 +86,9 @@ class MainActivity : AppCompatActivity() {
         deleteAllBrands.join()
     }
 
-    private fun dbUpdateBrand(brand: BrandEntity, id: Long) = runBlocking {
+    private fun dbUpdateBrand(name: String, profit: Float, id: Long) = runBlocking {
         val updateBrand = launch {
-            val nameUpdate = brand.name
-            val profitUpdate = brand.profit
-            db.brandDAO.update(nameUpdate, profitUpdate, id)
+            db.brandDAO.update(name, profit, id)
         }
         updateBrand.join()
     }
@@ -107,7 +107,32 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dbShowAllCosmetics() = runBlocking {
-        var cosmesticList = async { db.cosmeticDAO.getAll().value }
+        var cosmesticList = async { db.cosmeticDAO.getAll() }
         Log.i("cosmeticList", cosmesticList.await().toString())
+    }
+
+    private fun dbDeleteCosmetic(id: Long) = runBlocking {
+        val deleteCosmetic = launch {
+            db.cosmeticDAO.delete(id)
+        }
+        deleteCosmetic.join()
+    }
+
+    private fun dbDeleteAllCosmetics() = runBlocking {
+        val brands = db.brandDAO.getAll()
+        brands.forEach {
+            it.name
+        }
+        val deleteAllCosmetics = launch {
+            db.cosmeticDAO.deleteAll()
+        }
+        deleteAllCosmetics.join()
+    }
+
+    private fun dbUpdateCosmetic(name: String, nameBrand: String, price: Float, id: Long) = runBlocking {
+        val updateCosmetic = launch {
+            db.cosmeticDAO.update(name, nameBrand, price, id)
+        }
+        updateCosmetic.join()
     }
 }

@@ -11,8 +11,8 @@ interface CosmeticDAO {
     @Insert
     suspend fun insert(cosmetic: CosmeticEntity): Long
 
-    @Update
-    suspend fun update(cosmetic: CosmeticEntity)
+    @Query("UPDATE cosmetic SET name = :nameUpdate, nameBrand = :nameBrandUpdate, price = :priceUpdate WHERE id = :id")
+    suspend fun update(nameUpdate: String, nameBrandUpdate: String, priceUpdate: Float,  id: Long)
 
     @Query("DELETE FROM cosmetic WHERE id = :id")
     suspend fun delete(id: Long)
@@ -21,5 +21,5 @@ interface CosmeticDAO {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM cosmetic")
-    fun getAll(): LiveData<List<CosmeticEntity>>
+    fun getAll(): List<CosmeticEntity>
 }
