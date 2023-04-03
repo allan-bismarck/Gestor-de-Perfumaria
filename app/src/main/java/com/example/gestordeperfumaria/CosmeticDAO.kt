@@ -11,8 +11,8 @@ interface CosmeticDAO {
     @Insert
     suspend fun insert(cosmetic: CosmeticEntity): Long
 
-    @Query("UPDATE cosmetic SET name = :nameUpdate, nameBrand = :nameBrandUpdate, price = :priceUpdate WHERE id = :id")
-    suspend fun update(nameUpdate: String, nameBrandUpdate: String, priceUpdate: Float,  id: Long)
+    @Query("UPDATE cosmetic SET name = :nameUpdate, idBrand = :idBrandUpdate, price = :priceUpdate WHERE id = :id")
+    suspend fun update(nameUpdate: String, idBrandUpdate: Long, priceUpdate: Float,  id: Long)
 
     @Query("DELETE FROM cosmetic WHERE id = :id")
     suspend fun delete(id: Long)

@@ -7,7 +7,7 @@ data class CosmeticEntity (
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0,
     var name: String,
-    var nameBrand: String,
+    var idBrand: Long,
     var date: String,
     var price: Float
 )
