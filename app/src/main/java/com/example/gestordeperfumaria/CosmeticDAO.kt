@@ -21,7 +21,7 @@ interface CosmeticDAO {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM cosmetic WHERE name = :name")
-    fun get(name: String): CosmeticEntity
+    fun getByName(name: String): CosmeticEntity
 
     @Query("SELECT * FROM cosmetic")
     fun getAll(): List<CosmeticEntity>
