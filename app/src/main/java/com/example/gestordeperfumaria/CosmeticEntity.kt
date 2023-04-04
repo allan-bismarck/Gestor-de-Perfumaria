@@ -9,5 +9,6 @@ data class CosmeticEntity (
     var name: String,
     var idBrand: Long,
     var date: String,
-    var price: Float
+    var price: Float,
+    var isSale: Boolean
 )

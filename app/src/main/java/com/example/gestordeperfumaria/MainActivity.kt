@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var db: AppDataBase
-
+    private lateinit var searchName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,23 +35,26 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             dbInsertBrand("Avon", 0.2f)
-            //dbInsertCosmetic("Perfume", 1, 100.0f)
+            //dbInsertCosmetic("Perfume", 1, 100.0f, true)
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
         binding.btnMonitor.setOnClickListener {
+            searchName = binding.editText.text.toString()
             //dbShowAllBrands()
-            //dbShowBrand(23)
+            //dbShowBrandByName(searchName)
             //dbDeleteBrand(3)
             //dbDeleteAllBrands()
             //dbUpdateBrand("Boticario", 0.15f, 25)
             //dbShowAllCosmetics()
+            dbShowCosmeticByName(searchName)
             //dbDeleteCosmetic(2)
             //dbDeleteAllCosmetics()
             //dbUpdateCosmetic("Colonia", 2, 25.0f, 6)
-            dbShowBrandWithCosmetics(1)
+            //dbShowBrandWithCosmetics(1)
             startActivity(Intent(this, MonitorActivity::class.java))
         }
+
     }
 
     private fun dbInsertBrand(name: String, profit: Float) = runBlocking {
@@ -71,9 +74,20 @@ class MainActivity : AppCompatActivity() {
         Log.i("brandList", brandList.await().toString())
     }
 
-    private fun dbShowBrand(id: Long) = runBlocking {
-        var brand = async { db.brandDAO.get(id) }
-        Log.i("brandList", brand.await().toString())
+    private fun dbShowBrandByName(name: String) = runBlocking {
+        if(name.isNotEmpty()) {
+            var nameLower = name.lowercase()
+            nameLower = nameLower[0].uppercase() + nameLower.substring(1, nameLower.lastIndex + 1)
+            try {
+                var brand = async { db.brandDAO.get(nameLower) }
+                Log.i("brandList", brand.await().toString())
+            } catch (e: Exception) {
+                val message = "Não foi possível encontrar a marca pesquisada, tente novamente"
+                Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this@MainActivity, "Digite a marca que deseja pesquisar", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun dbDeleteBrand(id: Long) = runBlocking {
@@ -111,11 +125,11 @@ class MainActivity : AppCompatActivity() {
         updateBrand.join()
     }
 
-    private fun dbInsertCosmetic(name: String, idBrand: Long, price: Float) = runBlocking {
+    private fun dbInsertCosmetic(name: String, idBrand: Long, price: Float, isSale: Boolean) = runBlocking {
         val insertCosmetic = launch {
             val dateFormat = SimpleDateFormat("dd/MM/yyyy")
             val date = dateFormat.format(Date()).toString()
-            val cosmeticEntity = CosmeticEntity(0, name, idBrand, date, price)
+            val cosmeticEntity = CosmeticEntity(0, name, idBrand, date, price, isSale)
             val result = db.cosmeticDAO.insert(cosmeticEntity)
             if(result > 0) {
                 val message = "Cosmético cadastrado com sucesso!"
@@ -128,6 +142,22 @@ class MainActivity : AppCompatActivity() {
     private fun dbShowAllCosmetics() = runBlocking {
         var cosmesticList = async { db.cosmeticDAO.getAll() }
         Log.i("cosmeticList", cosmesticList.await().toString())
+    }
+
+    private fun dbShowCosmeticByName(name: String) = runBlocking {
+        if(name.isNotEmpty()) {
+            var nameLower = name.lowercase()
+            nameLower = nameLower[0].uppercase() + nameLower.substring(1, nameLower.lastIndex + 1)
+            try {
+                var brand = async { db.cosmeticDAO.get(nameLower) }
+                Log.i("cosmeticList", brand.await().toString())
+            } catch (e: Exception) {
+                val message = "Não foi possível encontrar o cosmético pesquisado, tente novamente"
+                Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(this@MainActivity, "Digite o cosmético que deseja pesquisar.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun dbDeleteCosmetic(id: Long) = runBlocking {
@@ -144,9 +174,9 @@ class MainActivity : AppCompatActivity() {
         deleteAllCosmetics.join()
     }
 
-    private fun dbUpdateCosmetic(name: String, idBrand: Long, price: Float, id: Long) = runBlocking {
+    private fun dbUpdateCosmetic(name: String, idBrand: Long, price: Float, isSale: Boolean, id: Long) = runBlocking {
         val updateCosmetic = launch {
-            db.cosmeticDAO.update(name, idBrand, price, id)
+            db.cosmeticDAO.update(name, idBrand, price, isSale, id)
         }
         updateCosmetic.join()
     }
