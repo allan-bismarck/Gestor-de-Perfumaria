@@ -7,13 +7,151 @@
     tools:context=".RegisterActivity">
 
     <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="RegisterActivity"
+        android:text="Cadastro"
         android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textStyle="bold"/>
+
+    <RadioGroup
+        android:layout_marginLeft="35dp"
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintStart_toStartOf="parent">
+        <RadioButton android:id="@+id/btnRegisterBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar Marca"
+            android:textSize="18sp"
+            android:paddingHorizontal="10dp"
+            />
+        <RadioButton android:id="@+id/btnRegisterCosmetic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar Cosmético"
+            android:textSize="18sp"
+            android:paddingHorizontal="10dp"
+            />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_brand"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/radio_group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        >
+        <EditText
+            android:id="@+id/edit_texts_brand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:textSize="20sp"
+            android:hint="Nome da marca"
+            />
+
+        <EditText
+            android:id="@+id/editTextProfit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:textSize="20sp"
+            android:hint="Lucro(%)"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/registerCosmetic"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/radio_group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+        <EditText
+            android:id="@+id/edit_texts_cosmetic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:textSize="20sp"
+            android:hint="Nome do cosmético"
+            />
+
+        <EditText
+            android:id="@+id/edit_text_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:textSize="20dp"
+            android:hint="Preço(R$)"
+            />
+
+        <TextView
+            android:id="@+id/textview_brand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginVertical="15dp"
+            android:textSize="20sp"
+            android:text="Selecione a marca"
+            />
+
+        <TextView
+            android:id="@+id/textview_transaction_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp"
+            android:layout_marginVertical="5dp"
+            android:textSize="20sp"
+            android:text="Selecione o tipo de transação"
+            />
+
+        <RadioGroup
+            android:id="@+id/transaction_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="35dp">
+            <RadioButton android:id="@+id/btn_purchase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Compra"
+                android:textSize="20sp"
+                android:paddingHorizontal="10dp"
+                />
+            <RadioButton android:id="@+id/btn_sale"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Venda"
+                android:textSize="20sp"
+                android:paddingHorizontal="10dp"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Cadastrar"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="40dp"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

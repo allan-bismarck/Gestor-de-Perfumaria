@@ -34,18 +34,22 @@ class MainActivity : AppCompatActivity() {
             applicationContext,
             AppDataBase::class.java,
             "db-perfumery"
-        ).fallbackToDestructiveMigration()
+        )
             .allowMainThreadQueries().build()
 
         binding.btnRegister.setOnClickListener {
             //dbInsertBrand("Avon", 0.2f)
-            dbInsertCosmetic("Perfume", 1, 100.0f, true)
+            //dbInsertCosmetic("Perfume", 1, 100.0f, true)
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
+        binding.btnSearch.setOnClickListener {
+            startActivity(Intent(this, SearchActivity::class.java))
+        }
+
         binding.btnMonitor.setOnClickListener {
-            searchName = binding.editText.text.toString()
-            searchName2 = binding.editText2.text.toString()
+            //searchName = binding.editText.text.toString()
+            //searchName2 = binding.editText2.text.toString()
             //dbShowAllBrands()
             //dbShowBrandByName(searchName)
             //dbDeleteBrand(3)
@@ -57,10 +61,10 @@ class MainActivity : AppCompatActivity() {
             //dbDeleteAllCosmetics()
             //dbUpdateCosmetic("Colonia", 2, 25.0f, 6)
             //dbShowBrandWithCosmetics(1)
-            dbShowCosmeticByPeriod(searchName, searchName2)
+            //dbShowCosmeticByPeriod(searchName, searchName2)
             startActivity(Intent(this, MonitorActivity::class.java))
-            binding.editText.text.clear()
-            binding.editText2.text.clear()
+            //binding.editText.text.clear()
+            //binding.editText2.text.clear()
         }
 
     }
