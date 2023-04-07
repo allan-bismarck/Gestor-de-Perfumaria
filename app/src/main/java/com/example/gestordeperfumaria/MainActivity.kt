@@ -30,13 +30,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = Room.databaseBuilder(
-            applicationContext,
-            AppDataBase::class.java,
-            "db-perfumery"
-        )
-            .allowMainThreadQueries().build()
-
         binding.btnRegister.setOnClickListener {
             //dbInsertBrand("Avon", 0.2f)
             //dbInsertCosmetic("Perfume", 1, 100.0f, true)
