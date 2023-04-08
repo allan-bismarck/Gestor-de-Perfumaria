@@ -6,4 +6,124 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity">
 
+    <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/text_search"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:hint="Pesquisar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/date_initial"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="Início (dd/mm/aaaa)"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/date_final"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
+        />
+
+    <EditText
+        android:layout_marginStart="10dp"
+        android:layout_marginVertical="10dp"
+        android:id="@+id/date_final"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:hint="Fim (dd/mm/aaaa)"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search"
+        app:layout_constraintStart_toEndOf="@id/date_initial"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="invisible"
+        />
+
+    <ImageButton
+        android:id="@+id/btn_search"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
+        android:src="@drawable/baseline_search_24"
+        app:layout_constraintStart_toEndOf="@+id/text_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:layout_marginVertical="10dp"
+        android:contentDescription="Pesquisar" />
+
+    <RadioGroup
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/radio_brand_cosmetic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toBottomOf="@id/text_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+        <RadioButton android:id="@+id/brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marca"
+            android:textSize="18sp"
+            android:checked="true"
+            android:paddingHorizontal="10dp"
+
+            />
+        <RadioButton android:id="@+id/cosmetic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cosmético"
+            android:textSize="18sp"
+            android:checked="false"
+            android:paddingHorizontal="10dp"
+            />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/radio_date_name_brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toBottomOf="@id/radio_brand_cosmetic"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone">
+        <RadioButton android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Por Nome"
+            android:textSize="18sp"
+            android:checked="true"
+            android:paddingHorizontal="10dp"
+            />
+
+        <RadioButton android:id="@+id/for_brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Por Marca"
+            android:textSize="18sp"
+            android:checked="false"
+            android:paddingHorizontal="10dp"
+            />
+
+        <RadioButton android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Por Data"
+            android:textSize="18sp"
+            android:checked="false"
+            android:paddingHorizontal="10dp"
+            />
+    </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

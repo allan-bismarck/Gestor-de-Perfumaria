@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.room.Room
 import com.example.gestordeperfumaria.databinding.ActivityRegisterBinding
 import kotlinx.coroutines.async
@@ -25,6 +26,8 @@ class RegisterActivity : AppCompatActivity() {
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        dialog()
 
         db = Room.databaseBuilder(
             applicationContext,
@@ -176,4 +179,16 @@ class RegisterActivity : AppCompatActivity() {
         Log.i("cosmeticList", cosmesticList.await().toString())
         return@runBlocking cosmesticList
     }.await()
+
+    private fun dialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("DICA DE USO")
+
+        val message = "Para cadastrar um cosmético é preciso ter pelo menos uma marca cadastrada. Se caso o usuário desejar cadastrar um cosmético de uma nova marca, terá que cadastrar a marca primeiramente e após isso cadastrar a marca."
+        builder.setMessage(message)
+
+        builder.setPositiveButton("Fechar") { dialog, which -> }
+
+        builder.show()
+    }
 }
