@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.example.gestordeperfumaria.databinding.ActivityRegisterBinding
@@ -17,7 +18,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
     private lateinit var db: AppDataBase
     private lateinit var adapterBrands: BrandAdapter
-    private val brands: MutableList<Brand> = mutableListOf()
+    private var brands: MutableList<Brand> = mutableListOf()
     private lateinit var brandsEntitys: List<BrandEntity>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,8 @@ class SearchActivity : AppCompatActivity() {
 
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        dialog()
 
         binding.radioBrandCosmetic.setOnCheckedChangeListener { _, _ ->
             if(binding.brand.isChecked) {
@@ -70,12 +73,66 @@ class SearchActivity : AppCompatActivity() {
             }
         }
 
-        runBlocking {
-            brandsEntitys = async { dbShowAllBrands() }.await()
+        binding.btnSearch.setOnClickListener {
+            val name = binding.textSearch.text.toString()
+            searchBrandByName(name)
         }
 
-        getBrandsFromBrandEntity(brandsEntitys)
+    }
 
+    private suspend fun dbShowAllBrands() = runBlocking {
+        var brandList = async { db.brandDAO.getAll() }.await()
+        Log.i("brandList", brandList.toString())
+        brandList = brandList.sortedBy {
+            it.name
+        }
+        return@runBlocking brandList
+    }
+
+    private fun dbShowBrandByName(name: String) = runBlocking {
+        var brandList: List<BrandEntity> = dbShowAllBrands()
+        var returnBrand: MutableList<BrandEntity> = mutableListOf()
+        if(name.isNotEmpty()) {
+            var nameLower = name.lowercase()
+            brandList.forEach {
+                val itNameLower = it.name.lowercase()
+                if(itNameLower.contains(nameLower)) {
+                    returnBrand.add(it)
+                }
+            }
+            brandList = returnBrand
+            if(brandList.isNotEmpty()) {
+                Log.i("brandList", brandList.toString())
+                return@runBlocking brandList
+            } else {
+                val message = "Não foi possível encontrar a marca pesquisada, tente novamente"
+                Toast.makeText(this@SearchActivity, message, Toast.LENGTH_SHORT).show()
+                return@runBlocking brandList
+            }
+        } else {
+            return@runBlocking brandList
+        }
+    }
+
+    private fun getBrandsFromBrandEntity(listBrandEntity: List<BrandEntity>) {
+        listBrandEntity.forEach {
+            brands.add(Brand(it.name, it.profit))
+        }
+    }
+
+    private fun dialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("DICA DE USO")
+
+        val message = "Para exibir todas as marcas ou todos os cosméticos, faça uma pesquisa por nome e não digite nada no campo de pesquisa, apenas clique no botão de pesquisar."
+        builder.setMessage(message)
+
+        builder.setPositiveButton("Fechar") { dialog, which -> }
+
+        builder.show()
+    }
+
+    private fun showBrandsRecyclerView() {
         val recyclerViewBrands = binding.rvBrands
         recyclerViewBrands.layoutManager = LinearLayoutManager(this)
         recyclerViewBrands.setHasFixedSize(true)
@@ -83,31 +140,16 @@ class SearchActivity : AppCompatActivity() {
         recyclerViewBrands.adapter = adapterBrands
     }
 
-    private suspend fun dbShowAllBrands() = runBlocking {
-        var brandList = async { db.brandDAO.getAll() }
-        Log.i("brandList", brandList.await().toString())
-        return@runBlocking brandList
-    }.await()
-
-    private fun dbShowBrandByName(name: String) = runBlocking {
-        if(name.isNotEmpty()) {
-            var nameLower = name.lowercase()
-            nameLower = nameLower[0].uppercase() + nameLower.substring(1, nameLower.lastIndex + 1)
-            try {
-                var brand = async { db.brandDAO.get(nameLower) }
-                Log.i("brandList", brand.await().toString())
-            } catch (e: Exception) {
-                val message = "Não foi possível encontrar a marca pesquisada, tente novamente"
-                Toast.makeText(this@SearchActivity, message, Toast.LENGTH_SHORT).show()
-            }
-        } else {
-            Toast.makeText(this@SearchActivity, "Digite a marca que deseja pesquisar", Toast.LENGTH_SHORT).show()
+    private fun searchBrandByName(name: String) {
+        brandsEntitys = listOf()
+        brands = mutableListOf()
+        runBlocking {
+            brandsEntitys = dbShowBrandByName(name) as List<BrandEntity>
         }
-    }
 
-    private fun getBrandsFromBrandEntity(listBrandEntity: List<BrandEntity>) {
-        listBrandEntity.forEach {
-            brands.add(Brand(it.name, it.profit))
+        if(brandsEntitys.isNotEmpty()) {
+            getBrandsFromBrandEntity(brandsEntitys)
+            showBrandsRecyclerView()
         }
     }
 }
