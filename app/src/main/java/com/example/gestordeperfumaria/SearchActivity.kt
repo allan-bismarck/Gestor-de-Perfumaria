@@ -12,6 +12,7 @@ import androidx.room.Room
 import com.example.gestordeperfumaria.databinding.ActivityRegisterBinding
 import com.example.gestordeperfumaria.databinding.ActivitySearchBinding
 import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class SearchActivity : AppCompatActivity() {
@@ -116,7 +117,7 @@ class SearchActivity : AppCompatActivity() {
 
     private fun getBrandsFromBrandEntity(listBrandEntity: List<BrandEntity>) {
         listBrandEntity.forEach {
-            brands.add(Brand(it.name, it.profit))
+            brands.add(Brand(it.id, it.name, it.profit))
         }
     }
 
@@ -151,5 +152,27 @@ class SearchActivity : AppCompatActivity() {
             getBrandsFromBrandEntity(brandsEntitys)
             showBrandsRecyclerView()
         }
+    }
+
+    private fun dbUpdateBrand(name: String, profit: Float, id: Long) = runBlocking {
+        val updateBrand = launch {
+            db.brandDAO.update(name, profit, id)
+        }
+        updateBrand.join()
+    }
+
+    private fun dbDeleteBrand(id: Long) = runBlocking {
+        val listCosmetics = async { db.cosmeticDAO.getAll() }.await()
+        listCosmetics.forEach {
+            if(it.idBrand == id) {
+                val message = "Não é possível excluir a marca selecionada, pois existem cosméticos cadastrados dessa marca!"
+                Toast.makeText(this@SearchActivity, message, Toast.LENGTH_SHORT).show()
+                return@runBlocking
+            }
+        }
+        val deleteBrand = launch {
+            db.brandDAO.delete(id)
+        }
+        deleteBrand.join()
     }
 }
