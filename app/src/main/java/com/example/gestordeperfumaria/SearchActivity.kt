@@ -21,6 +21,9 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var adapterBrands: BrandAdapter
     private var brands: MutableList<Brand> = mutableListOf()
     private lateinit var brandsEntitys: List<BrandEntity>
+    private lateinit var adapterCosmetics: CosmeticAdapter
+    private var cosmetics: MutableList<Cosmetic> = mutableListOf()
+    private lateinit var cosmeticsEntitys: List<CosmeticEntity>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -79,6 +82,7 @@ class SearchActivity : AppCompatActivity() {
             searchBrandByName(name)
         }
 
+        searchCosmeticByName()
     }
 
     private suspend fun dbShowAllBrands() = runBlocking {
@@ -121,6 +125,12 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    private fun getCosmeticsFromCosmeticEntity(listCosmeticEntity: List<CosmeticEntity>) {
+        listCosmeticEntity.forEach {
+            cosmetics.add(Cosmetic(it.id, it.name, it.idBrand, it.date, it.price, it.isSale))
+        }
+    }
+
     private fun dialog() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("DICA DE USO")
@@ -134,11 +144,20 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun showBrandsRecyclerView() {
-        val recyclerViewBrands = binding.rvBrands
+        val recyclerViewBrands = binding.rv
         recyclerViewBrands.layoutManager = LinearLayoutManager(this)
         recyclerViewBrands.setHasFixedSize(true)
         adapterBrands = BrandAdapter(this, brands)
         recyclerViewBrands.adapter = adapterBrands
+    }
+
+    private fun showCosmeticsRecyclerView() {
+        cosmeticsEntitys
+        val recyclerViewCosmetics = binding.rv
+        recyclerViewCosmetics.layoutManager = LinearLayoutManager(this)
+        recyclerViewCosmetics.setHasFixedSize(true)
+        adapterCosmetics = CosmeticAdapter(this, cosmetics)
+        recyclerViewCosmetics.adapter = adapterCosmetics
     }
 
     private fun searchBrandByName(name: String) {
@@ -174,5 +193,27 @@ class SearchActivity : AppCompatActivity() {
             db.brandDAO.delete(id)
         }
         deleteBrand.join()
+    }
+
+    private fun dbShowAllCosmetics() = runBlocking {
+        var cosmeticList = async { db.cosmeticDAO.getAll() }.await()
+        Log.i("cosmeticList", cosmeticList.toString())
+        cosmeticList = cosmeticList.sortedBy {
+            it.name
+        }
+        return@runBlocking cosmeticList
+    }
+
+    private fun searchCosmeticByName() {
+        cosmeticsEntitys = listOf()
+        cosmetics = mutableListOf()
+        runBlocking {
+            cosmeticsEntitys = dbShowAllCosmetics() as List<CosmeticEntity>
+        }
+
+        if(cosmeticsEntitys.isNotEmpty()) {
+            getCosmeticsFromCosmeticEntity(cosmeticsEntitys)
+            showCosmeticsRecyclerView()
+        }
     }
 }

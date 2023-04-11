@@ -1,8 +1,6 @@
 package com.example.gestordeperfumaria
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -18,7 +16,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.math.RoundingMode
 import java.text.DecimalFormat
-import kotlin.math.roundToLong
 
 class BrandAdapter(
     private val context: Context,
