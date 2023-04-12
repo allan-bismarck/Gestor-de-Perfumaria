@@ -134,7 +134,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
 
-                dbInsertCosmetic(cosmeticName, idBrand, cosmeticPrice.toFloat(), isSale)
+                dbInsertCosmetic(cosmeticName, idBrand, (cosmeticPrice.toFloat()) * 100.0f, isSale)
                 binding.nameCosmetic.text.clear()
                 binding.priceCosmetic.text.clear()
                 finish()

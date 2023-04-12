@@ -3,9 +3,13 @@ package com.example.gestordeperfumaria
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
 import com.example.gestordeperfumaria.databinding.ItemCosmeticBinding
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class CosmeticAdapter(
     private val context: Context,
@@ -48,7 +52,12 @@ class CosmeticAdapter(
         }
 
         holder.btnDelete.setOnClickListener {
-
+            try {
+                dbDeleteCosmetic(cosmetics[position].id)
+            } catch (e: Exception) {}
+            cosmetics.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemChanged(position)
         }
     }
 
@@ -89,5 +98,12 @@ class CosmeticAdapter(
             notifyItemChanged(position)
             dialog.dismiss()
         }*/
+    }
+
+    private fun dbDeleteCosmetic(id: Long) = runBlocking {
+        val deleteCosmetic = launch {
+            db.cosmeticDAO.delete(id)
+        }
+        deleteCosmetic.join()
     }
 }
