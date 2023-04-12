@@ -112,72 +112,64 @@ class CosmeticAdapter(
             }
         }
 
-editName.setText(name)
+        editName.setText(name)
 
-editPrice.setText(price.toString())
-if(isSale) {
-    btnPurchase.isChecked = false
-    btnSale.isChecked = true
-} else {
-    btnPurchase.isChecked = true
-    btnSale.isChecked = false
-}
+        editPrice.setText(price.toString())
+        if(isSale) {
+            btnPurchase.isChecked = false
+            btnSale.isChecked = true
+        } else {
+            btnPurchase.isChecked = true
+            btnSale.isChecked = false
+        }
 
-builder.setView(view)
-val dialog = builder.create()
-dialog.show()
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.show()
 
-cancel.setOnClickListener {
-    dialog.dismiss()
-}
+        cancel.setOnClickListener {
+            dialog.dismiss()
+        }
 
-save.setOnClickListener {
-    val editNameStr = editName.text.toString()
-    if(editNameStr.isEmpty()) {
-        Toast.makeText(context, "Digite um nome para o cosmético", Toast.LENGTH_SHORT).show()
-        validate = false
-    }
+        save.setOnClickListener {
+            val editNameStr = editName.text.toString()
+            if(editNameStr.isEmpty()) {
+                Toast.makeText(context, "Digite um nome para o cosmético", Toast.LENGTH_SHORT).show()
+                validate = false
+            }
 
-    val nameItemSelected = brandsSpinner.selectedItem
-    var idBrandSelected: Long = 0
+            val nameItemSelected = brandsSpinner.selectedItem
+            var idBrandSelected: Long = 0
 
-    listBrands.forEach {
-        if(it.name == nameItemSelected) {
-            idBrandSelected = it.id
+            listBrands.forEach {
+                if(it.name == nameItemSelected) {
+                    idBrandSelected = it.id
+                }
+            }
+
+            val df = DecimalFormat("#.##")
+            df.roundingMode = RoundingMode.DOWN
+            var editPriceFloat = 0.0f
+            try {
+                editPriceFloat = (editPrice.text.toString().toFloat() / 100.0).toFloat()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Digite um preço válido para o cosmético", Toast.LENGTH_SHORT).show()
+                validate = false
+            }
+
+            val editIsSale = btnSale.isChecked
+
+            if(validate) {
+                dbUpdateCosmetic(editNameStr, idBrandSelected, df.format(editPriceFloat).toFloat() * 100.0f, editIsSale, id)
+                cosmetics[position].name = editNameStr
+                cosmetics[position].idBrand = idBrandSelected
+                cosmetics[position].price = df.format(editPriceFloat).toFloat() * 100.0f
+                cosmetics[position].isSale = editIsSale
+                notifyItemChanged(position)
+                dialog.dismiss()
+            }
         }
     }
-
-    val editIsSale = btnSale.isChecked
-
-    listCosmetics.forEach {
-        if(it.name == editName.text.toString() && it.idBrand == idBrandSelected && it.isSale == editIsSale) {
-            val message = "Já existe um cosmético cadastrado com esse nome, com mesma marca e com o mesmo tipo de transação, tente outro nome ou escolha outra marca."
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-            validate = false
-        }
-    }
-
-    val df = DecimalFormat("#.##")
-    df.roundingMode = RoundingMode.DOWN
-    var editPriceFloat = 0.0f
-    try {
-        editPriceFloat = (editPrice.text.toString().toFloat() / 100.0).toFloat()
-    } catch (e: Exception) {
-        Toast.makeText(context, "Digite um preço válido para o cosmético", Toast.LENGTH_SHORT).show()
-        validate = false
-    }
-
-    if(validate) {
-        dbUpdateCosmetic(editNameStr, idBrandSelected, df.format(editPriceFloat).toFloat() * 100.0f, editIsSale, id)
-        cosmetics[position].name = editNameStr
-        cosmetics[position].idBrand = idBrandSelected
-        cosmetics[position].price = df.format(editPriceFloat).toFloat() * 100.0f
-        cosmetics[position].isSale = editIsSale
-        notifyItemChanged(position)
-        dialog.dismiss()
-    }
-}
-}
 
 private fun dbDeleteCosmetic(id: Long) = runBlocking {
 val deleteCosmetic = launch {

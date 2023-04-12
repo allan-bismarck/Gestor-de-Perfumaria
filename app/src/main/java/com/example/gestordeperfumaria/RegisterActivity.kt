@@ -126,14 +126,6 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
 
-                listCosmetics.forEach {
-                    if(it.name == cosmeticName && it.idBrand == idBrand) {
-                        val message = "Já existe um cosmético cadastrado com esse nome e com essa mesma marca, tente outro nome ou escolha outra marca."
-                        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-                        return@setOnClickListener
-                    }
-                }
-
                 dbInsertCosmetic(cosmeticName, idBrand, (cosmeticPrice.toFloat()) * 100.0f, isSale)
                 binding.nameCosmetic.text.clear()
                 binding.priceCosmetic.text.clear()
