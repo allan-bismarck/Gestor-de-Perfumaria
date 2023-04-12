@@ -110,15 +110,27 @@ class BrandAdapter(
 
         save.setOnClickListener {
             val editNameStr = editName.text.toString()
+            if(editNameStr.isEmpty()) {
+                Toast.makeText(context, "Digite um nome para a marca.", Toast.LENGTH_SHORT).show()
+            }
+
             val df = DecimalFormat("#.##")
             df.roundingMode = RoundingMode.DOWN
-            val editProfitFloat = (editProfit.text.toString().toFloat()/100.0).toFloat()
+            var editProfitFloat = 0.0f
+            try {
+                editProfitFloat = (editProfit.text.toString().toFloat()/100.0).toFloat()
+            } catch (e: Exception) {
+                Toast.makeText(context, "Digite um número válido para o lucro da marca.", Toast.LENGTH_SHORT).show()
+            }
+
             Log.i("name, profit, id", "$editNameStr, ${editProfitFloat}, $id")
-            dbUpdateBrand(editNameStr, df.format(editProfitFloat).toFloat(), id)
-            brands[position].name = editNameStr
-            brands[position].profit = editProfitFloat
-            notifyItemChanged(position)
-            dialog.dismiss()
+            if(editNameStr.isNotEmpty() && editProfitFloat != 0.0f) {
+                dbUpdateBrand(editNameStr, df.format(editProfitFloat).toFloat(), id)
+                brands[position].name = editNameStr
+                brands[position].profit = editProfitFloat
+                notifyItemChanged(position)
+                dialog.dismiss()
+            }
         }
     }
 }

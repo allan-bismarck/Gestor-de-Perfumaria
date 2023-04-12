@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit_text_name_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edit_text_id_brand_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"/>
+
+    <EditText
+        android:id="@+id/edit_text_price_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"/>
+
+    <RadioGroup
+        android:id="@+id/transaction_type_cosmetic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="35dp">
+        <RadioButton android:id="@+id/btn_purchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Compra"
+            android:textSize="20sp"
+            android:checked="true"
+            android:paddingHorizontal="10dp"
+            />
+        <RadioButton android:id="@+id/btn_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Venda"
+            android:textSize="20sp"
+            android:checked="false"
+            android:paddingHorizontal="10dp"
+            />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/edit_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancelar" />
+
+    <Button
+        android:id="@+id/edit_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar" />
+
+</LinearLayout>
