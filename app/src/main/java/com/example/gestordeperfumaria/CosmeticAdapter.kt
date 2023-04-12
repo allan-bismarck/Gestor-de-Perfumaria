@@ -4,10 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
@@ -77,78 +74,138 @@ class CosmeticAdapter(
         builder.setTitle("Editar Cosmético")
         val view = LayoutInflater.from(context).inflate(R.layout.cosmetic_edit_dialog, null)
 
+        lateinit var listBrands: List<BrandEntity>
+        var mutableListBrandsString: MutableList<String> = mutableListOf("Selecione a marca")
+
+        lateinit var listCosmetics: List<CosmeticEntity>
+
+        var validate = true
+
         val editName = view.findViewById<EditText>(R.id.edit_text_name_dialog)
-        val editIdBrand = view.findViewById<EditText>(R.id.edit_text_id_brand_dialog)
+        val brandsSpinner = view.findViewById<Spinner>(R.id.brands_spinner)
         val editPrice = view.findViewById<EditText>(R.id.edit_text_price_dialog)
         val btnPurchase = view.findViewById<RadioButton>(R.id.btn_purchase)
         val btnSale = view.findViewById<RadioButton>(R.id.btn_sale)
         val cancel = view.findViewById<Button>(R.id.edit_cancel)
         val save = view.findViewById<Button>(R.id.edit_save)
 
-        editName.setText(name)
-        editIdBrand.setText(idBrand.toString())
-        editPrice.setText(price.toString())
-        if(isSale) {
-            btnPurchase.isChecked = false
-            btnSale.isChecked = true
-        } else {
-            btnPurchase.isChecked = true
-            btnSale.isChecked = false
+        runBlocking {
+            listBrands = async { dbShowAllBrands() }.await()
+            listCosmetics = async { dbShowAllCosmetics() }.await()
         }
 
-        builder.setView(view)
-        val dialog = builder.create()
-        dialog.show()
-
-        cancel.setOnClickListener {
-            dialog.dismiss()
+        listBrands.forEach {
+            mutableListBrandsString.add(it.name)
         }
 
-        save.setOnClickListener {
-            val editNameStr = editName.text.toString()
-            if(editNameStr.isEmpty()) {
-                Toast.makeText(context, "Digite um nome para o cosmético", Toast.LENGTH_SHORT).show()
-            }
+        var adapter = ArrayAdapter(
+            context,
+            R.layout.my_spinner_style,
+            mutableListBrandsString
+        )
 
-            val editIdBrandStr = editIdBrand.text.toString()
-            if(editIdBrandStr.isEmpty()) {
-                Toast.makeText(context, "Selecione uma marca para o cosmético", Toast.LENGTH_SHORT).show()
-            }
+        brandsSpinner.adapter = adapter
 
-            val df = DecimalFormat("#.##")
-            df.roundingMode = RoundingMode.DOWN
-            var editPriceFloat = 0.0f
-            try {
-                editPriceFloat = (editPrice.text.toString().toFloat() / 100.0).toFloat()
-            } catch (e: Exception) {
-                Toast.makeText(context, "Digite um preço válido para o cosmético", Toast.LENGTH_SHORT).show()
+        listBrands.indices.forEach {
+            if(listBrands[it].id == idBrand) {
+                brandsSpinner.setSelection(it + 1)
             }
+        }
 
-            val editIsSale = btnSale.isChecked
+editName.setText(name)
 
-            if(editNameStr.isNotEmpty() && editIdBrandStr.isNotEmpty() && editPriceFloat != 0.0f) {
-                dbUpdateCosmetic(editNameStr, editIdBrandStr.toLong(), df.format(editPriceFloat).toFloat() * 100.0f, editIsSale, id)
-                cosmetics[position].name = editNameStr
-                cosmetics[position].idBrand = editIdBrandStr.toLong()
-                cosmetics[position].price = df.format(editPriceFloat).toFloat() * 100.0f
-                cosmetics[position].isSale = editIsSale
-                notifyItemChanged(position)
-                dialog.dismiss()
-            }
+editPrice.setText(price.toString())
+if(isSale) {
+    btnPurchase.isChecked = false
+    btnSale.isChecked = true
+} else {
+    btnPurchase.isChecked = true
+    btnSale.isChecked = false
+}
+
+builder.setView(view)
+val dialog = builder.create()
+dialog.show()
+
+cancel.setOnClickListener {
+    dialog.dismiss()
+}
+
+save.setOnClickListener {
+    val editNameStr = editName.text.toString()
+    if(editNameStr.isEmpty()) {
+        Toast.makeText(context, "Digite um nome para o cosmético", Toast.LENGTH_SHORT).show()
+        validate = false
+    }
+
+    val nameItemSelected = brandsSpinner.selectedItem
+    var idBrandSelected: Long = 0
+
+    listBrands.forEach {
+        if(it.name == nameItemSelected) {
+            idBrandSelected = it.id
         }
     }
 
-    private fun dbDeleteCosmetic(id: Long) = runBlocking {
-        val deleteCosmetic = launch {
-            db.cosmeticDAO.delete(id)
+    val editIsSale = btnSale.isChecked
+
+    listCosmetics.forEach {
+        if(it.name == editName.text.toString() && it.idBrand == idBrandSelected && it.isSale == editIsSale) {
+            val message = "Já existe um cosmético cadastrado com esse nome, com mesma marca e com o mesmo tipo de transação, tente outro nome ou escolha outra marca."
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+            validate = false
         }
-        deleteCosmetic.join()
     }
 
-    private fun dbUpdateCosmetic(name: String, idBrand: Long, price: Float, isSale: Boolean, id: Long) = runBlocking {
-        val updateCosmetic = launch {
-            db.cosmeticDAO.update(name, idBrand, price, isSale, id)
-        }
-        updateCosmetic.join()
+    val df = DecimalFormat("#.##")
+    df.roundingMode = RoundingMode.DOWN
+    var editPriceFloat = 0.0f
+    try {
+        editPriceFloat = (editPrice.text.toString().toFloat() / 100.0).toFloat()
+    } catch (e: Exception) {
+        Toast.makeText(context, "Digite um preço válido para o cosmético", Toast.LENGTH_SHORT).show()
+        validate = false
     }
+
+    if(validate) {
+        dbUpdateCosmetic(editNameStr, idBrandSelected, df.format(editPriceFloat).toFloat() * 100.0f, editIsSale, id)
+        cosmetics[position].name = editNameStr
+        cosmetics[position].idBrand = idBrandSelected
+        cosmetics[position].price = df.format(editPriceFloat).toFloat() * 100.0f
+        cosmetics[position].isSale = editIsSale
+        notifyItemChanged(position)
+        dialog.dismiss()
+    }
+}
+}
+
+private fun dbDeleteCosmetic(id: Long) = runBlocking {
+val deleteCosmetic = launch {
+    db.cosmeticDAO.delete(id)
+}
+deleteCosmetic.join()
+}
+
+private fun dbUpdateCosmetic(name: String, idBrand: Long, price: Float, isSale: Boolean, id: Long) = runBlocking {
+val updateCosmetic = launch {
+    db.cosmeticDAO.update(name, idBrand, price, isSale, id)
+}
+updateCosmetic.join()
+}
+
+private suspend fun dbShowAllBrands() = runBlocking {
+var brandList = async { db.brandDAO.getAll() }
+Log.i("brandList", brandList.await().toString())
+return@runBlocking brandList
+}.await()
+
+private suspend fun dbShowAllCosmetics() = runBlocking {
+var cosmeticList = async { db.cosmeticDAO.getAll() }
+Log.i("cosmeticList", cosmeticList.toString())
+return@runBlocking cosmeticList
+}.await()
+
+private fun loadInitialValues() {
+
+}
 }
