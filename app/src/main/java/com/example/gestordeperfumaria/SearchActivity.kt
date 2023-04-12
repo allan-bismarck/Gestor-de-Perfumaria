@@ -20,10 +20,10 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var db: AppDataBase
     private lateinit var adapterBrands: BrandAdapter
     private var brands: MutableList<Brand> = mutableListOf()
-    private lateinit var brandsEntitys: List<BrandEntity>
+    private var brandsEntitys: List<BrandEntity> = listOf()
     private lateinit var adapterCosmetics: CosmeticAdapter
     private var cosmetics: MutableList<Cosmetic> = mutableListOf()
-    private lateinit var cosmeticsEntitys: List<CosmeticEntity>
+    private var cosmeticsEntitys: List<CosmeticEntity> = listOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,7 +43,9 @@ class SearchActivity : AppCompatActivity() {
                 binding.textSearch.visibility = View.VISIBLE
                 binding.dateInitial.visibility = View.INVISIBLE
                 binding.dateFinal.visibility = View.INVISIBLE
-                binding.radioDateNameBrand.visibility = View.INVISIBLE
+                binding.radioDateNameBrand.visibility = View.GONE
+                cosmetics.clear()
+                showCosmeticsRecyclerView()
             }
             if(binding.cosmetic.isChecked) {
                 if(binding.date.isChecked) {
@@ -56,6 +58,8 @@ class SearchActivity : AppCompatActivity() {
                     binding.dateFinal.visibility = View.INVISIBLE
                 }
                 binding.radioDateNameBrand.visibility = View.VISIBLE
+                brands.clear()
+                showBrandsRecyclerView()
             }
         }
 
@@ -79,10 +83,12 @@ class SearchActivity : AppCompatActivity() {
 
         binding.btnSearch.setOnClickListener {
             val name = binding.textSearch.text.toString()
-            searchBrandByName(name)
+            if(binding.brand.isChecked) {
+                searchBrandByName(name)
+            } else {
+                searchCosmeticByName(name)
+            }
         }
-
-        searchCosmeticByName()
     }
 
     private suspend fun dbShowAllBrands() = runBlocking {
@@ -204,16 +210,41 @@ class SearchActivity : AppCompatActivity() {
         return@runBlocking cosmeticList
     }
 
-    private fun searchCosmeticByName() {
+    private fun searchCosmeticByName(name: String) {
         cosmeticsEntitys = listOf()
         cosmetics = mutableListOf()
         runBlocking {
-            cosmeticsEntitys = dbShowAllCosmetics() as List<CosmeticEntity>
+            cosmeticsEntitys = dbShowCosmeticByName(name) as List<CosmeticEntity>
         }
 
         if(cosmeticsEntitys.isNotEmpty()) {
             getCosmeticsFromCosmeticEntity(cosmeticsEntitys)
             showCosmeticsRecyclerView()
+        }
+    }
+
+    private fun dbShowCosmeticByName(name: String) = runBlocking {
+        var cosmeticList: List<CosmeticEntity> = dbShowAllCosmetics()
+        var returnCosmetic: MutableList<CosmeticEntity> = mutableListOf()
+        if(name.isNotEmpty()) {
+            var nameLower = name.lowercase()
+            cosmeticList.forEach {
+                val itNameLower = it.name.lowercase()
+                if(itNameLower.contains(nameLower)) {
+                    returnCosmetic.add(it)
+                }
+            }
+            cosmeticList = returnCosmetic
+            if(cosmeticList.isNotEmpty()) {
+                Log.i("cosmeticList", cosmeticList.toString())
+                return@runBlocking cosmeticList
+            } else {
+                val message = "Não foi possível encontrar o cosmético pesquisado, tente novamente"
+                Toast.makeText(this@SearchActivity, message, Toast.LENGTH_SHORT).show()
+                return@runBlocking cosmeticList
+            }
+        } else {
+            return@runBlocking cosmeticList
         }
     }
 }
