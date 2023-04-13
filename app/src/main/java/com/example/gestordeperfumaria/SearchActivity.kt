@@ -4,16 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import com.example.gestordeperfumaria.databinding.ActivityRegisterBinding
 import com.example.gestordeperfumaria.databinding.ActivitySearchBinding
 import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.text.ParsePosition
+import java.text.SimpleDateFormat
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
@@ -24,6 +24,8 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var adapterCosmetics: CosmeticAdapter
     private var cosmetics: MutableList<Cosmetic> = mutableListOf()
     private var cosmeticsEntitys: List<CosmeticEntity> = listOf()
+    private lateinit var listBrands: List<BrandEntity>
+    private var mutableListBrandsString: MutableList<String> = mutableListOf("Selecione a marca")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -38,11 +40,28 @@ class SearchActivity : AppCompatActivity() {
 
         dialog()
 
+        runBlocking {
+            listBrands = async { dbShowAllBrands() }.await()
+        }
+
+        listBrands.forEach {
+            mutableListBrandsString.add(it.name)
+        }
+
+        var adapter = ArrayAdapter(
+            this,
+            R.layout.my_spinner_style,
+            mutableListBrandsString
+        )
+
+        binding.brandsSpinner.adapter = adapter
+
         binding.radioBrandCosmetic.setOnCheckedChangeListener { _, _ ->
             if(binding.brand.isChecked) {
                 binding.textSearch.visibility = View.VISIBLE
                 binding.dateInitial.visibility = View.INVISIBLE
                 binding.dateFinal.visibility = View.INVISIBLE
+                binding.brandsSpinner.visibility = View.INVISIBLE
                 binding.radioDateNameBrand.visibility = View.GONE
                 cosmetics.clear()
                 showCosmeticsRecyclerView()
@@ -52,10 +71,25 @@ class SearchActivity : AppCompatActivity() {
                     binding.textSearch.visibility = View.INVISIBLE
                     binding.dateInitial.visibility = View.VISIBLE
                     binding.dateFinal.visibility = View.VISIBLE
-                } else {
+                    binding.brandsSpinner.visibility = View.INVISIBLE
+                    cosmetics.clear()
+                    showCosmeticsRecyclerView()
+                }
+                if(binding.name.isChecked) {
                     binding.textSearch.visibility = View.VISIBLE
                     binding.dateInitial.visibility = View.INVISIBLE
                     binding.dateFinal.visibility = View.INVISIBLE
+                    binding.brandsSpinner.visibility = View.INVISIBLE
+                    cosmetics.clear()
+                    showCosmeticsRecyclerView()
+                }
+                if(binding.forBrand.isChecked) {
+                    binding.textSearch.visibility = View.INVISIBLE
+                    binding.dateInitial.visibility = View.INVISIBLE
+                    binding.dateFinal.visibility = View.INVISIBLE
+                    binding.brandsSpinner.visibility = View.VISIBLE
+                    cosmetics.clear()
+                    showCosmeticsRecyclerView()
                 }
                 binding.radioDateNameBrand.visibility = View.VISIBLE
                 brands.clear()
@@ -68,16 +102,19 @@ class SearchActivity : AppCompatActivity() {
                 binding.textSearch.visibility = View.VISIBLE
                 binding.dateInitial.visibility = View.INVISIBLE
                 binding.dateFinal.visibility = View.INVISIBLE
+                binding.brandsSpinner.visibility = View.INVISIBLE
             }
             if(binding.forBrand.isChecked) {
-                binding.textSearch.visibility = View.VISIBLE
+                binding.textSearch.visibility = View.INVISIBLE
                 binding.dateInitial.visibility = View.INVISIBLE
                 binding.dateFinal.visibility = View.INVISIBLE
+                binding.brandsSpinner.visibility = View.VISIBLE
             }
             if(binding.date.isChecked) {
                 binding.textSearch.visibility = View.INVISIBLE
                 binding.dateInitial.visibility = View.VISIBLE
                 binding.dateFinal.visibility = View.VISIBLE
+                binding.brandsSpinner.visibility = View.INVISIBLE
             }
         }
 
@@ -86,7 +123,31 @@ class SearchActivity : AppCompatActivity() {
             if(binding.brand.isChecked) {
                 searchBrandByName(name)
             } else {
-                searchCosmeticByName(name)
+                cosmetics.clear()
+                showCosmeticsRecyclerView()
+                if(binding.name.isChecked) {
+                    searchCosmeticByName(name)
+                }
+
+                if(binding.forBrand.isChecked) {
+                    val nameItemSelected = binding.brandsSpinner.selectedItem
+                    var idBrand: Long = 0
+
+                    listBrands.forEach {
+                        if(it.name == nameItemSelected) {
+                            idBrand = it.id
+                            searchCosmeticsForBrand(idBrand)
+                        }
+                    }
+
+                    if(idBrand == 0.toLong()) {
+                        Toast.makeText(this, "Selecione uma marca para pesquisar.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                if(binding.date.isChecked) {
+                    searchCosmeticsByPeriod(binding.dateInitial.text.toString(), binding.dateFinal.text.toString())
+                }
             }
         }
     }
@@ -158,7 +219,6 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun showCosmeticsRecyclerView() {
-        cosmeticsEntitys
         val recyclerViewCosmetics = binding.rv
         recyclerViewCosmetics.layoutManager = LinearLayoutManager(this)
         recyclerViewCosmetics.setHasFixedSize(true)
@@ -170,35 +230,13 @@ class SearchActivity : AppCompatActivity() {
         brandsEntitys = listOf()
         brands = mutableListOf()
         runBlocking {
-            brandsEntitys = dbShowBrandByName(name) as List<BrandEntity>
+            brandsEntitys = dbShowBrandByName(name)
         }
 
         if(brandsEntitys.isNotEmpty()) {
             getBrandsFromBrandEntity(brandsEntitys)
             showBrandsRecyclerView()
         }
-    }
-
-    private fun dbUpdateBrand(name: String, profit: Float, id: Long) = runBlocking {
-        val updateBrand = launch {
-            db.brandDAO.update(name, profit, id)
-        }
-        updateBrand.join()
-    }
-
-    private fun dbDeleteBrand(id: Long) = runBlocking {
-        val listCosmetics = async { db.cosmeticDAO.getAll() }.await()
-        listCosmetics.forEach {
-            if(it.idBrand == id) {
-                val message = "Não é possível excluir a marca selecionada, pois existem cosméticos cadastrados dessa marca!"
-                Toast.makeText(this@SearchActivity, message, Toast.LENGTH_SHORT).show()
-                return@runBlocking
-            }
-        }
-        val deleteBrand = launch {
-            db.brandDAO.delete(id)
-        }
-        deleteBrand.join()
     }
 
     private fun dbShowAllCosmetics() = runBlocking {
@@ -214,7 +252,7 @@ class SearchActivity : AppCompatActivity() {
         cosmeticsEntitys = listOf()
         cosmetics = mutableListOf()
         runBlocking {
-            cosmeticsEntitys = dbShowCosmeticByName(name) as List<CosmeticEntity>
+            cosmeticsEntitys = dbShowCosmeticByName(name)
         }
 
         if(cosmeticsEntitys.isNotEmpty()) {
@@ -245,6 +283,85 @@ class SearchActivity : AppCompatActivity() {
             }
         } else {
             return@runBlocking cosmeticList
+        }
+    }
+
+    private fun dbShowCosmeticByPeriod(initialPeriod: String, endPeriod: String) = runBlocking {
+        if((initialPeriod.isNotEmpty() && endPeriod.isNotEmpty()) && (isDateValid(initialPeriod) && isDateValid(endPeriod))) {
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+            val initialPos = ParsePosition(0)
+            val convertInitialDate = dateFormat.parse(initialPeriod, initialPos)
+            val endPos = ParsePosition(0)
+            val convertEndDate = dateFormat.parse(endPeriod, endPos)
+            if(convertEndDate.after(convertInitialDate) || convertEndDate == convertInitialDate) {
+                var cosmetic = async { db.cosmeticDAO.getAll() }.await()
+                var filterCosmetic = mutableListOf<CosmeticEntity>()
+                cosmetic.forEach {
+                    val cosmeticPos = ParsePosition(0)
+                    val cosmeticDate = dateFormat.parse(it.date, cosmeticPos)
+                    if ((convertInitialDate.before(cosmeticDate) || initialPeriod == it.date)
+                        && (convertEndDate.after(cosmeticDate) || endPeriod == it.date)
+                    ) {
+                        filterCosmetic.add(it)
+                    }
+                }
+                Log.i("cosmeticList", filterCosmetic.toString())
+                return@runBlocking filterCosmetic
+            } else {
+                val message = "A data inicial deve anteceder ou ser igual à data final"
+                Toast.makeText(this@SearchActivity, message, Toast.LENGTH_SHORT).show()
+                return@runBlocking mutableListOf<CosmeticEntity>()
+            }
+        } else {
+            val message = "Digite as datas inicial e final para realizar a pesquisa"
+            Toast.makeText(this@SearchActivity, message, Toast.LENGTH_SHORT).show()
+            return@runBlocking mutableListOf<CosmeticEntity>()
+        }
+    }
+
+    private fun searchCosmeticsByPeriod(dateInitial: String, dateFinal: String) {
+        cosmeticsEntitys = listOf()
+        cosmetics = mutableListOf()
+        runBlocking {
+            cosmeticsEntitys = dbShowCosmeticByPeriod(dateInitial, dateFinal)
+        }
+
+        if(cosmeticsEntitys.isNotEmpty()) {
+            getCosmeticsFromCosmeticEntity(cosmeticsEntitys)
+            showCosmeticsRecyclerView()
+        }
+    }
+
+    private fun isDateValid(date: String): Boolean {
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        val pos = ParsePosition(0)
+        val convertDate = dateFormat.parse(date, pos)
+        try {
+            val localDate = dateFormat.format(convertDate)
+            return true
+        } catch(e: Exception) { }
+        return false
+    }
+
+    private fun dbShowBrandWithCosmetics(id: Long): BrandWithCosmetic = runBlocking {
+        val brandWithCosmeticList =  async { db.brandWithCosmeticDAO.getBrandWithCosmetics(id) }.await()
+        Log.i("BrandWithCosmetics", brandWithCosmeticList.toString())
+        return@runBlocking brandWithCosmeticList
+    }
+
+    private fun searchCosmeticsForBrand(id: Long) {
+        cosmeticsEntitys = listOf()
+        cosmetics = mutableListOf()
+        val brandWithCosmeticList: BrandWithCosmetic
+        runBlocking {
+            brandWithCosmeticList = dbShowBrandWithCosmetics(id)
+        }
+
+        cosmeticsEntitys = brandWithCosmeticList.cosmetics
+
+        if(cosmeticsEntitys.isNotEmpty()) {
+            getCosmeticsFromCosmeticEntity(cosmeticsEntitys)
+            showCosmeticsRecyclerView()
         }
     }
 }

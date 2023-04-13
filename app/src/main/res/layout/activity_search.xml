@@ -47,6 +47,21 @@
         android:visibility="invisible"
         />
 
+    <Spinner
+        android:visibility="invisible"
+        android:id="@+id/brands_spinner"
+        android:layout_width="350dp"
+        android:spinnerMode="dropdown"
+        android:layout_marginVertical="10sp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_height="wrap_content"
+        android:scrollbarStyle="outsideInset"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <ImageButton
         android:id="@+id/btn_search"
         android:layout_width="50dp"

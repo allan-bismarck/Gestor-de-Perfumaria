@@ -224,7 +224,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun dbShowBrandWithCosmetics(id: Long) = runBlocking {
         val showBrandWithCosmetics = launch {
-            val brandWithCosmeticList =  async { db.brandWithCosmeticDAO.getBrandsWithCosmetics() }.await()
+            val brandWithCosmeticList =  async { db.brandWithCosmeticDAO.getBrandWithCosmetics(id) }.await()
             Log.i("BrandWithCosmetics", brandWithCosmeticList.toString())
         }
         showBrandWithCosmetics.join()
