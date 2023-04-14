@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.room.Room
 import com.example.gestordeperfumaria.databinding.ActivityMonitorBinding
-import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat

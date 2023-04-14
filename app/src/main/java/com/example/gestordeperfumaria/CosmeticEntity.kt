@@ -1,7 +1,6 @@
 package com.example.gestordeperfumaria
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.time.LocalDate
 
 @Entity(tableName = "cosmetic")
 data class CosmeticEntity (

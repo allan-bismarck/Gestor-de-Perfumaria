@@ -1,24 +1,17 @@
 package com.example.gestordeperfumaria
 
+import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.gestordeperfumaria.databinding.ItemViewPagerBinding
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
-import java.text.ParsePosition
-import java.text.SimpleDateFormat
-import kotlin.math.exp
 
 class ViewPagerAdapter(
     private val context: Context,
-    val months: List<String>,
-    val cosmeticsProfit: List<CosmeticEntity>
+    private val months: List<String>,
+    private val cosmeticsProfit: List<CosmeticEntity>
 ): RecyclerView.Adapter<ViewPagerAdapter.ViewPagerViewHolder>() {
 
     private lateinit var cosmeticListByDate: List<CosmeticEntity>
@@ -27,6 +20,7 @@ class ViewPagerAdapter(
         var profitContent = binding.profitContent
         var expenseContent = binding.expenseContent
         var totalContent = binding.totalContent
+        val title = binding.resultTitle
         val btnBack = binding.btnBack
         val btnNext = binding.btnNext
     }
@@ -37,6 +31,7 @@ class ViewPagerAdapter(
         return ViewPagerViewHolder(view)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: ViewPagerViewHolder, position: Int) {
         cosmeticListByDate = getCosmeticsByDate(position)
         var sales = 0.0f
@@ -51,7 +46,19 @@ class ViewPagerAdapter(
             }
         }
 
+        holder.title.text = ""
+        holder.title.setBackgroundColor(R.color.white)
+
         total = sales - expenses
+
+        if(total > 0) {
+            holder.title.text = "Lucro"
+            holder.title.setBackgroundColor(R.color.teal_200)
+        }
+        if(total < 0) {
+            holder.title.text = "Prejuízo"
+            holder.title.setBackgroundColor(R.color.teal_700)
+        }
 
         holder.profitContent.text = "R$${sales}"
         holder.expenseContent.text = "R$${expenses}"

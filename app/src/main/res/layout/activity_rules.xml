@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_700"
+    tools:context=".RulesActivity">
+
+    <LinearLayout
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:padding="15dp"
+        android:elevation="15dp"
+        android:layout_marginTop="100dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Regras"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Um cosmético só pode ser cadastrado se houver pelo menos uma marca cadastrada."
+            android:textSize="20sp"
+            android:justificationMode="inter_word"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Uma marca somente pode ser deletada se não houver nenhum cosmético cadastrado dessa marca."
+            android:textSize="20sp"
+            android:justificationMode="inter_word"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dicas de uso"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Para exibir todas as marcas ou todos os cosméticos, faça uma pesquisa por nome e não digite nada no campo de pesquisa, apenas clique no botão de pesquisar."
+            android:textSize="20sp"
+            android:justificationMode="inter_word"
+            android:textColor="@color/black"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

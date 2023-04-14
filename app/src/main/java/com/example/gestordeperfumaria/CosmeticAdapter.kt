@@ -171,33 +171,29 @@ class CosmeticAdapter(
         }
     }
 
-private fun dbDeleteCosmetic(id: Long) = runBlocking {
-val deleteCosmetic = launch {
-    db.cosmeticDAO.delete(id)
-}
-deleteCosmetic.join()
-}
+    private fun dbDeleteCosmetic(id: Long) = runBlocking {
+        val deleteCosmetic = launch {
+            db.cosmeticDAO.delete(id)
+        }
+        deleteCosmetic.join()
+    }
 
-private fun dbUpdateCosmetic(name: String, idBrand: Long, price: Float, isSale: Boolean, id: Long) = runBlocking {
-val updateCosmetic = launch {
-    db.cosmeticDAO.update(name, idBrand, price, isSale, id)
-}
-updateCosmetic.join()
-}
+    private fun dbUpdateCosmetic(name: String, idBrand: Long, price: Float, isSale: Boolean, id: Long) = runBlocking {
+        val updateCosmetic = launch {
+            db.cosmeticDAO.update(name, idBrand, price, isSale, id)
+        }
+        updateCosmetic.join()
+    }
 
-private suspend fun dbShowAllBrands() = runBlocking {
-var brandList = async { db.brandDAO.getAll() }
-Log.i("brandList", brandList.await().toString())
-return@runBlocking brandList
-}.await()
+    private suspend fun dbShowAllBrands() = runBlocking {
+        var brandList = async { db.brandDAO.getAll() }
+        Log.i("brandList", brandList.await().toString())
+        return@runBlocking brandList
+    }.await()
 
-private suspend fun dbShowAllCosmetics() = runBlocking {
-var cosmeticList = async { db.cosmeticDAO.getAll() }
-Log.i("cosmeticList", cosmeticList.toString())
-return@runBlocking cosmeticList
-}.await()
-
-private fun loadInitialValues() {
-
-}
+    private suspend fun dbShowAllCosmetics() = runBlocking {
+        var cosmeticList = async { db.cosmeticDAO.getAll() }
+        Log.i("cosmeticList", cosmeticList.toString())
+        return@runBlocking cosmeticList
+    }.await()
 }
