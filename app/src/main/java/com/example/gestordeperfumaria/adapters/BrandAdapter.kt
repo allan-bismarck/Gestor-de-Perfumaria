@@ -1,8 +1,6 @@
 package com.example.gestordeperfumaria.adapters
 
 import android.content.Context
-import android.content.res.Resources
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
@@ -39,7 +37,7 @@ class BrandAdapter(
         db = Room.databaseBuilder(
             context,
             AppDataBase::class.java,
-            Resources.getSystem().getString(R.string.DATABASE_NAME)
+            "db-perfumery"
         ).allowMainThreadQueries().build()
 
         return BrandViewHolder(view)

@@ -41,7 +41,7 @@ class SearchActivity : AppCompatActivity() {
         db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java,
-            Resources.getSystem().getString(R.string.DATABASE_NAME)
+            "db-perfumery"
         ).allowMainThreadQueries().build()
 
         binding = ActivitySearchBinding.inflate(layoutInflater)

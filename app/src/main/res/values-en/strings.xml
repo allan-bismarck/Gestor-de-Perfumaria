@@ -20,7 +20,7 @@
     <string name="paragraph_two_rules">A brand can only be deleted if there is no registered cosmetic for that brand.</string>
     <string name="paragraph_tree_rules">Only cosmetic records registered in the last year will be saved, cosmetic transactions registered with a date prior to the last year will be automatically deleted.</string>
     <string name="title_usage_tips">Tips for use</string>
-    <string name="paragraph_one_usage_tips">To display all brands or all cosmetics, do a search by name and don't type anything in the search field, just click the search button.</string>
+    <string name="paragraph_one_usage_tips">To display all brands or all cosmetics, do a search by name and don\'t type anything in the search field, just click the search button.</string>
     <string name="label_to_search">Search</string>
     <string name="label_date_initial">Start (dd/mm/aaaa)</string>
     <string name="label_date_final">End (dd/mm/aaaa)</string>
