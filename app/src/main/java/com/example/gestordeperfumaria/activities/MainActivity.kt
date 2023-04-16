@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java,
-            "db-perfumery"
+            applicationContext.resources.getString(R.string.DATABASE_NAME)
         ).allowMainThreadQueries().build()
 
         binding.btnRegister.setOnClickListener {

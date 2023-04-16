@@ -34,15 +34,17 @@ class SearchActivity : AppCompatActivity() {
     private var cosmetics: MutableList<Cosmetic> = mutableListOf()
     private var cosmeticsEntitys: List<CosmeticEntity> = listOf()
     private lateinit var listBrands: List<BrandEntity>
-    private var mutableListBrandsString: MutableList<String> = mutableListOf(R.string.label_select_type_transaction.toString())
+    private var mutableListBrandsString: MutableList<String> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java,
-            "db-perfumery"
+            applicationContext.resources.getString(R.string.DATABASE_NAME)
         ).allowMainThreadQueries().build()
+
+        mutableListBrandsString.add(applicationContext.resources.getString(R.string.label_spinner))
 
         binding = ActivitySearchBinding.inflate(layoutInflater)
         setContentView(binding.root)

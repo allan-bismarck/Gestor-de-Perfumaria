@@ -25,7 +25,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var db: AppDataBase
     private var isSale: Boolean = false
     private lateinit var listBrands: List<BrandEntity>
-    private var mutableListBrandsString: MutableList<String> = mutableListOf(R.string.label_spinner.toString())
+    private var mutableListBrandsString: MutableList<String> = mutableListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,8 +37,10 @@ class RegisterActivity : AppCompatActivity() {
         db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java,
-            "db-perfumery"
+            applicationContext.resources.getString(R.string.DATABASE_NAME)
         ).allowMainThreadQueries().build()
+
+        mutableListBrandsString.add(applicationContext.resources.getString(R.string.label_spinner))
 
         binding.radioGroup.setOnCheckedChangeListener { _, _ ->
 

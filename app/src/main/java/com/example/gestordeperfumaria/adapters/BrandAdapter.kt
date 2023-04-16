@@ -37,7 +37,7 @@ class BrandAdapter(
         db = Room.databaseBuilder(
             context,
             AppDataBase::class.java,
-            "db-perfumery"
+            context.resources.getString(R.string.DATABASE_NAME)
         ).allowMainThreadQueries().build()
 
         return BrandViewHolder(view)

@@ -42,7 +42,7 @@ class CosmeticAdapter(
         db = Room.databaseBuilder(
             context,
             AppDataBase::class.java,
-            "db-perfumery"
+            context.resources.getString(R.string.DATABASE_NAME)
         ).allowMainThreadQueries().build()
 
         return CosmeticViewHolder(view)
@@ -79,7 +79,8 @@ class CosmeticAdapter(
         val view = LayoutInflater.from(context).inflate(R.layout.cosmetic_edit_dialog, null)
 
         lateinit var listBrands: List<BrandEntity>
-        var mutableListBrandsString: MutableList<String> = mutableListOf(R.string.label_spinner.toString())
+        var mutableListBrandsString: MutableList<String> = mutableListOf()
+        mutableListBrandsString.add(context.resources.getString(R.string.label_spinner))
 
         lateinit var listCosmetics: List<CosmeticEntity>
 
