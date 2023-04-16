@@ -53,18 +53,22 @@ class ViewPagerAdapter(
 
         total = sales - expenses
 
+        val res = context.resources
+
         if(total > 0) {
-            holder.title.text = R.string.title_profit.toString()
+            holder.title.text = res.getString(R.string.title_profit)
             holder.title.setBackgroundColor(R.color.teal_200)
         }
         if(total < 0) {
-            holder.title.text = R.string.title_prejudice.toString()
+            holder.title.text = res.getString(R.string.title_prejudice)
             holder.title.setBackgroundColor(R.color.teal_700)
         }
 
-        holder.profitContent.text = "${R.string.money}${sales}"
-        holder.expenseContent.text = "${R.string.money}${expenses}"
-        holder.totalContent.text = "${R.string.money}${total}"
+        val strMoney = context.resources.getString(R.string.money)
+
+        holder.profitContent.text = "${strMoney}${sales}"
+        holder.expenseContent.text = "${strMoney}${expenses}"
+        holder.totalContent.text = "${strMoney}${total}"
 
         holder.month.text = months[position]
 
@@ -99,18 +103,19 @@ class ViewPagerAdapter(
     private fun dateToNumberDate(position: Int): String {
         val year = months[position].split('/')[1]
         val month = months[position].split('/')[0]
+        val res = context.resources
         return when(month) {
-            R.string.month_1.toString() -> "1/$year"
-            R.string.month_2.toString() -> "2/$year"
-            R.string.month_3.toString() -> "3/$year"
-            R.string.month_4.toString() -> "4/$year"
-            R.string.month_5.toString() -> "5/$year"
-            R.string.month_6.toString() -> "6/$year"
-            R.string.month_7.toString() -> "7/$year"
-            R.string.month_8.toString() -> "8/$year"
-            R.string.month_9.toString() -> "9/$year"
-            R.string.month_10.toString() -> "10/$year"
-            R.string.month_11.toString() -> "11/$year"
+            res.getString(R.string.month_1) -> "1/$year"
+            res.getString(R.string.month_2) -> "2/$year"
+            res.getString(R.string.month_3) -> "3/$year"
+            res.getString(R.string.month_4) -> "4/$year"
+            res.getString(R.string.month_5) -> "5/$year"
+            res.getString(R.string.month_6) -> "6/$year"
+            res.getString(R.string.month_7) -> "7/$year"
+            res.getString(R.string.month_8) -> "8/$year"
+            res.getString(R.string.month_9) -> "9/$year"
+            res.getString(R.string.month_1) -> "10/$year"
+            res.getString(R.string.month_1) -> "11/$year"
             else -> "12/$year"
         }
     }
