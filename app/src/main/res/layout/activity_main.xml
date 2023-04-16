@@ -38,7 +38,7 @@
                 android:id="@+id/btnRegister"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Cadastro"
+                android:text="@string/label_register"
                 android:layout_marginBottom="20dp"
                 android:textSize="18sp"
                 />
@@ -47,7 +47,7 @@
                 android:id="@+id/btnSearch"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Pesquisar"
+                android:text="@string/label_search"
                 android:textSize="18sp"
                 android:layout_marginBottom="20dp" />
 
@@ -55,7 +55,7 @@
                 android:id="@+id/btnMonitor"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Acompanhe seus lucros"
+                android:text="@string/label_profits"
                 android:textSize="18sp"
                 android:layout_marginBottom="20dp" />
 
@@ -63,7 +63,7 @@
                 android:id="@+id/btnRules"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Regras"
+                android:text="@string/label_rules"
                 android:textSize="18sp"
                 />
 

@@ -34,7 +34,7 @@
         <RadioButton android:id="@+id/btn_purchase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Compra"
+            android:text="@string/label_purchase"
             android:textSize="20sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
@@ -42,7 +42,7 @@
         <RadioButton android:id="@+id/btn_sale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Venda"
+            android:text="@string/label_sale"
             android:textSize="20sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
@@ -53,12 +53,12 @@
         android:id="@+id/edit_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cancelar" />
+        android:text="@string/label_cancel" />
 
     <Button
         android:id="@+id/edit_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Salvar" />
+        android:text="@string/label_save" />
 
 </LinearLayout>

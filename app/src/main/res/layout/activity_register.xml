@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity">
+    tools:context=".activities.RegisterActivity">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastro"
+        android:text="@string/label_register"
         android:textSize="25sp"
         android:paddingVertical="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
         <RadioButton android:id="@+id/btnRegisterBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Marca"
+            android:text="@string/label_brand"
             android:textSize="18sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
@@ -39,7 +39,7 @@
         <RadioButton android:id="@+id/btnRegisterCosmetic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cosmético"
+            android:text="@string/label_cosmetic"
             android:textSize="18sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
             android:textSize="20sp"
-            android:hint="Nome da marca"
+            android:hint="@string/label_name_brand"
             />
 
         <EditText
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
             android:textSize="20sp"
-            android:hint="Lucro(%)"
+            android:hint="@string/label_profit_value"
             android:inputType="numberDecimal"
             />
     </LinearLayout>
@@ -92,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
             android:textSize="20sp"
-            android:hint="Nome do cosmético"
+            android:hint="@string/label_name_cosmetic"
             />
 
         <EditText
@@ -101,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
             android:textSize="20sp"
-            android:hint="Preço(R$)"
+            android:hint="@string/label_price"
             android:inputType="numberDecimal"
             />
 
@@ -122,7 +122,7 @@
             android:layout_marginHorizontal="35dp"
             android:layout_marginVertical="5dp"
             android:textSize="20sp"
-            android:text="Selecione o tipo de transação"
+            android:text="@string/label_select_type_transaction"
             />
 
         <RadioGroup
@@ -134,7 +134,7 @@
             <RadioButton android:id="@+id/btn_purchase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Compra"
+                android:text="@string/label_purchase"
                 android:textSize="20sp"
                 android:checked="true"
                 android:paddingHorizontal="10dp"
@@ -142,7 +142,7 @@
             <RadioButton android:id="@+id/btn_sale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Venda"
+                android:text="@string/label_sale"
                 android:textSize="20sp"
                 android:checked="false"
                 android:paddingHorizontal="10dp"
@@ -154,7 +154,7 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:text="Cadastrar"
+        android:text="@string/label_to_register"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

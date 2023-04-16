@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity">
+    tools:context=".activities.SearchActivity">
 
     <EditText
         android:layout_marginStart="10dp"
@@ -12,7 +12,7 @@
         android:id="@+id/text_search"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="Pesquisar"
+        android:hint="@string/label_to_search"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_search"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         android:id="@+id/date_initial"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="Início (dd/mm/aaaa)"
+        android:hint="@string/label_date_initial"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/date_final"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:id="@+id/date_final"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:hint="Fim (dd/mm/aaaa)"
+        android:hint="@string/label_date_final"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_search"
         app:layout_constraintStart_toEndOf="@id/date_initial"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/white"
         android:layout_marginVertical="10dp"
-        android:contentDescription="Pesquisar" />
+        android:contentDescription="@string/label_to_search" />
 
     <RadioGroup
         android:layout_gravity="center_horizontal"
@@ -87,7 +87,7 @@
         <RadioButton android:id="@+id/brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Marca"
+            android:text="@string/label_brand"
             android:textSize="18sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
@@ -96,7 +96,7 @@
         <RadioButton android:id="@+id/cosmetic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cosmético"
+            android:text="@string/label_cosmetic"
             android:textSize="18sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
@@ -116,7 +116,7 @@
         <RadioButton android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Por Nome"
+            android:text="@string/label_by_name"
             android:textSize="18sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
@@ -125,7 +125,7 @@
         <RadioButton android:id="@+id/for_brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Por Marca"
+            android:text="@string/label_by_brand"
             android:textSize="18sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
@@ -134,7 +134,7 @@
         <RadioButton android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Por Data"
+            android:text="@string/label_by_date"
             android:textSize="18sp"
             android:checked="false"
             android:paddingHorizontal="10dp"

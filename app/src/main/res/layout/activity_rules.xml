@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    tools:context=".RulesActivity">
+    tools:context=".activities.RulesActivity">
 
     <LinearLayout
         android:layout_width="380dp"
@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Regras"
+            android:text="@string/title_rules"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginBottom="5dp"
@@ -29,7 +29,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Um cosmético só pode ser cadastrado se houver pelo menos uma marca cadastrada."
+            android:text="@string/paragraph_one_rules"
             android:textSize="20sp"
             android:justificationMode="inter_word"
             android:layout_marginBottom="5dp"
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Uma marca somente pode ser deletada se não houver nenhum cosmético cadastrado dessa marca."
+            android:text="@string/paragraph_two_rules"
             android:textSize="20sp"
             android:justificationMode="inter_word"
             android:layout_marginBottom="15dp"
@@ -49,7 +49,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dicas de uso"
+            android:text="@string/paragraph_tree_rules"
+            android:textSize="20sp"
+            android:justificationMode="inter_word"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_usage_tips"
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginBottom="5dp"
@@ -59,7 +69,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Para exibir todas as marcas ou todos os cosméticos, faça uma pesquisa por nome e não digite nada no campo de pesquisa, apenas clique no botão de pesquisar."
+            android:text="@string/paragraph_one_usage_tips"
             android:textSize="20sp"
             android:justificationMode="inter_word"
             android:textColor="@color/black"

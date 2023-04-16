@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/profit_content"
-                android:text="Lucros: "
+                android:text="@string/label_show_profits"
                 android:textStyle="bold"
                 android:textSize="30sp"
                 />
@@ -51,7 +51,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toEndOf="@id/profit_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="lucro"
+                android:text=""
                 android:textSize="30sp"
                 />
 
@@ -62,7 +62,7 @@
                 app:layout_constraintTop_toBottomOf="@id/profit_label"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/expense_content"
-                android:text="Despesas: "
+                android:text="@string/label_show_expenses"
                 android:textStyle="bold"
                 android:textSize="30sp"
                 />
@@ -74,7 +74,7 @@
                 app:layout_constraintTop_toBottomOf="@id/profit_content"
                 app:layout_constraintStart_toEndOf="@id/expense_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="despesas"
+                android:text=""
                 android:textSize="30sp"
                 />
 
@@ -85,7 +85,7 @@
                 app:layout_constraintTop_toBottomOf="@id/expense_label"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/total_content"
-                android:text="Saldo: "
+                android:text="@string/label_show_balance"
                 android:textStyle="bold"
                 android:textSize="30sp"
                 />
@@ -97,7 +97,7 @@
                 app:layout_constraintTop_toBottomOf="@id/expense_content"
                 app:layout_constraintStart_toEndOf="@id/total"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:text="saldo"
+                android:text=""
                 android:textSize="30sp"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -124,7 +124,7 @@
             android:id="@+id/month"
             android:layout_width="250dp"
             android:layout_height="match_parent"
-            android:text="Mês"
+            android:text=""
             android:textSize="30sp"
             android:textAlignment="center"
             android:gravity="center" />
