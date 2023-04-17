@@ -26,6 +26,9 @@ class MonitorActivity : AppCompatActivity() {
         binding = ActivityMonitorBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val title = applicationContext.resources.getString(R.string.label_profits)
+        supportActionBar?.title = title
+
         db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java,

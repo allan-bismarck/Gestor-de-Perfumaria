@@ -38,6 +38,9 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         db = Room.databaseBuilder(
             applicationContext,
             AppDataBase::class.java,
@@ -46,8 +49,8 @@ class SearchActivity : AppCompatActivity() {
 
         mutableListBrandsString.add(applicationContext.resources.getString(R.string.label_spinner))
 
-        binding = ActivitySearchBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val title = applicationContext.resources.getString(R.string.label_search)
+        supportActionBar?.title = title
 
         dialog()
 

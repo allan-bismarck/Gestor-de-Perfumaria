@@ -4,19 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.RegisterActivity">
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_register"
-        android:textSize="25sp"
-        android:paddingVertical="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textStyle="bold"/>
+    tools:context=".activities.RegisterActivity"
+    android:background="@color/light_gray">
 
     <RadioGroup
         android:layout_gravity="center_horizontal"
@@ -24,25 +13,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="15dp"
+        android:padding="5dp">
+
         <RadioButton android:id="@+id/btnRegisterBrand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_brand"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
-
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:buttonTint="@color/dark_yellow"
             />
         <RadioButton android:id="@+id/btnRegisterCosmetic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_cosmetic"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:buttonTint="@color/dark_yellow"
+            android:textColor="@color/black"
             />
     </RadioGroup>
 
@@ -61,8 +58,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:hint="@string/label_name_brand"
+            android:layout_marginVertical="5dp"
             />
 
         <EditText
@@ -70,9 +68,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:hint="@string/label_profit_value"
             android:inputType="numberDecimal"
+            android:layout_marginVertical="5dp"
             />
     </LinearLayout>
 
@@ -109,10 +108,10 @@
             android:id="@+id/brands_spinner"
             android:layout_width="match_parent"
             android:spinnerMode="dropdown"
-            android:layout_marginVertical="10sp"
+            android:layout_marginVertical="15dp"
             android:layout_marginHorizontal="20dp"
             android:layout_height="wrap_content"
-            android:scrollbarStyle="outsideInset"
+            android:backgroundTint="@color/black"
             />
 
         <TextView
@@ -120,9 +119,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="35dp"
-            android:layout_marginVertical="5dp"
+            android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:text="@string/label_select_type_transaction"
+            android:textColor="@color/black"
             />
 
         <RadioGroup
@@ -138,6 +138,9 @@
                 android:textSize="20sp"
                 android:checked="true"
                 android:paddingHorizontal="10dp"
+                android:buttonTint="@color/dark_yellow"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 />
             <RadioButton android:id="@+id/btn_sale"
                 android:layout_width="wrap_content"
@@ -146,6 +149,9 @@
                 android:textSize="20sp"
                 android:checked="false"
                 android:paddingHorizontal="10dp"
+                android:buttonTint="@color/dark_yellow"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 />
         </RadioGroup>
     </LinearLayout>
@@ -161,6 +167,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/dark_yellow"
+        android:textColor="@color/light_gray"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,12 +1,16 @@
 package com.example.gestordeperfumaria.activities
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.room.Room
 import com.example.gestordeperfumaria.entities.BrandEntity
@@ -26,11 +30,16 @@ class RegisterActivity : AppCompatActivity() {
     private var isSale: Boolean = false
     private lateinit var listBrands: List<BrandEntity>
     private var mutableListBrandsString: MutableList<String> = mutableListOf()
+    @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val title = applicationContext.resources.getString(R.string.label_register)
+        supportActionBar?.title = title
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(applicationContext.resources.getString(R.color.dark_yellow))))
 
         dialog()
 
@@ -115,6 +124,7 @@ class RegisterActivity : AppCompatActivity() {
                 cosmeticName = cosmeticName.lowercase()
                 cosmeticName = cosmeticName[0].uppercase() + cosmeticName.substring(1, cosmeticName.lastIndex + 1)
                 val cosmeticPrice = binding.priceCosmetic.text.toString().toDouble()/100.0
+                val cosmeticPriceFloat = (cosmeticPrice * 100.0f).toFloat()
 
                 val itemSelected = binding.brandsSpinner.selectedItemPosition
 
@@ -133,7 +143,7 @@ class RegisterActivity : AppCompatActivity() {
                     }
                 }
 
-                dbInsertCosmetic(cosmeticName, idBrand, (cosmeticPrice.toFloat()) * 100.0f, isSale)
+                dbInsertCosmetic(cosmeticName, idBrand, cosmeticPriceFloat, isSale)
                 binding.nameCosmetic.text.clear()
                 binding.priceCosmetic.text.clear()
                 finish()
