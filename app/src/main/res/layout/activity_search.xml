@@ -13,7 +13,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:hint="@string/label_to_search"
-        android:textSize="20sp"
+        android:textSize="22sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +56,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_height="wrap_content"
         android:scrollbarStyle="outsideInset"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -91,6 +91,9 @@
             android:textSize="18sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:buttonTint="@color/dark_yellow"
 
             />
         <RadioButton android:id="@+id/cosmetic"
@@ -100,6 +103,9 @@
             android:textSize="18sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:buttonTint="@color/dark_yellow"
             />
     </RadioGroup>
 
@@ -120,6 +126,9 @@
             android:textSize="18sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:buttonTint="@color/dark_yellow"
             />
 
         <RadioButton android:id="@+id/for_brand"
@@ -129,6 +138,9 @@
             android:textSize="18sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:buttonTint="@color/dark_yellow"
             />
 
         <RadioButton android:id="@+id/date"
@@ -138,6 +150,9 @@
             android:textSize="18sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:buttonTint="@color/dark_yellow"
             />
     </RadioGroup>
 
@@ -148,7 +163,6 @@
         app:layout_constraintTop_toBottomOf="@+id/radio_date_name_brand"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

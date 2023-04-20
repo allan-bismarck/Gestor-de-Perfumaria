@@ -1,6 +1,8 @@
 package com.example.gestordeperfumaria.activities
 
 import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.room.Room
@@ -28,6 +30,7 @@ class MonitorActivity : AppCompatActivity() {
 
         val title = applicationContext.resources.getString(R.string.label_profits)
         supportActionBar?.title = title
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(applicationContext.resources.getString(R.color.dark_yellow))))
 
         db = Room.databaseBuilder(
             applicationContext,

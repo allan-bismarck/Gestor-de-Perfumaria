@@ -1,5 +1,7 @@
 package com.example.gestordeperfumaria.activities
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.gestordeperfumaria.R
@@ -14,7 +16,7 @@ class RulesActivity : AppCompatActivity() {
         binding = ActivityRulesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val title = applicationContext.resources.getString(R.string.label_rules)
-        supportActionBar?.title = title
+        supportActionBar?.hide()
+
     }
 }

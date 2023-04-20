@@ -1,6 +1,8 @@
 package com.example.gestordeperfumaria.activities
 
 import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -51,6 +53,7 @@ class SearchActivity : AppCompatActivity() {
 
         val title = applicationContext.resources.getString(R.string.label_search)
         supportActionBar?.title = title
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(applicationContext.resources.getString(R.color.dark_yellow))))
 
         dialog()
 
