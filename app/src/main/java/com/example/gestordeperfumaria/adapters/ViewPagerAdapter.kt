@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gestordeperfumaria.entities.CosmeticEntity
 import com.example.gestordeperfumaria.R
 import com.example.gestordeperfumaria.databinding.ItemViewPagerBinding
+import kotlin.math.exp
 
 class ViewPagerAdapter(
     private val context: Context,
@@ -48,6 +49,20 @@ class ViewPagerAdapter(
             }
         }
 
+        val strMoney = context.resources.getString(R.string.money)
+
+        var int = sales.toString().split('.')[0]
+        var dec = sales.toString().split('.')[1]
+        dec = dec.substring(0, 1)
+
+        holder.profitContent.text = "${context.resources.getString(R.string.money)}$int.${dec}"
+
+        int = expenses.toString().split('.')[0]
+        dec = expenses.toString().split('.')[1]
+        dec = dec.substring(0, 1)
+
+        holder.expenseContent.text = "${context.resources.getString(R.string.money)}$int.${dec}"
+
         holder.title.text = ""
 
         total = sales - expenses
@@ -61,10 +76,12 @@ class ViewPagerAdapter(
             holder.title.text = res.getString(R.string.title_prejudice)
         }
 
-        val strMoney = context.resources.getString(R.string.money)
+        int = total.toString().split('.')[0]
+        dec = total.toString().split('.')[1]
+        dec = dec.substring(0, 1)
 
-        holder.profitContent.text = "${strMoney}${sales}"
-        holder.expenseContent.text = "${strMoney}${expenses}"
+        holder.totalContent.text = "${context.resources.getString(R.string.money)}$int.${dec}"
+
         holder.totalContent.text = "${strMoney}${total}"
 
         holder.month.text = months[position]
@@ -116,4 +133,6 @@ class ViewPagerAdapter(
             else -> "12/$year"
         }
     }
+
+
 }
