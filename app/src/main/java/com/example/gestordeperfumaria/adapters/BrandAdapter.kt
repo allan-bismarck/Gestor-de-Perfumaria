@@ -1,6 +1,7 @@
 package com.example.gestordeperfumaria.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
@@ -45,7 +46,15 @@ class BrandAdapter(
 
     override fun onBindViewHolder(holder: BrandViewHolder, position: Int) {
         holder.nameBrand.text = brands[position].name
-        holder.profitBrand.text = brands[position].profit.toString()
+        val profitNumber = brands[position].profit * 100.0f
+        val int = profitNumber.toString().split('.')[0]
+        var dec = profitNumber.toString().split('.')[1]
+        dec = dec.substring(0, 1)
+        holder.profitBrand.text = (if(dec.toInt() == 0) {
+            "$int%"
+        } else {
+            "$int.${dec}%"
+        }).toString()
 
         holder.btnEdit.setOnClickListener {
             brandEditDialog(brands[position].name, brands[position].profit, brands[position].id, position)
@@ -118,13 +127,14 @@ class BrandAdapter(
             df.roundingMode = RoundingMode.DOWN
             var editProfitFloat = 0.0f
             try {
-                editProfitFloat = (editProfit.text.toString().toFloat()/100.0).toFloat()
+                editProfitFloat = (editProfit.text.toString().toFloat()/100.0f)
+                Log.i("editProfitFloat", editProfitFloat.toString())
             } catch (e: Exception) {
                 Toast.makeText(context, R.string.toast_write_profit_brand, Toast.LENGTH_SHORT).show()
             }
 
             if(editNameStr.isNotEmpty() && editProfitFloat != 0.0f) {
-                dbUpdateBrand(editNameStr, df.format(editProfitFloat).toFloat(), id)
+                dbUpdateBrand(editNameStr, editProfitFloat, id)
                 brands[position].name = editNameStr
                 brands[position].profit = editProfitFloat
                 notifyItemChanged(position)
