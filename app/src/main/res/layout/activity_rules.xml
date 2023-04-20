@@ -10,11 +10,10 @@
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:background="@color/light_gray"
         android:padding="15dp"
-        android:elevation="15dp"
-        android:layout_marginTop="40dp">
+        android:elevation="15dp">
 
         <TextView
             android:layout_width="wrap_content"

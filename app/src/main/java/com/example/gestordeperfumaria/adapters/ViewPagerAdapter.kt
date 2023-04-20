@@ -49,7 +49,6 @@ class ViewPagerAdapter(
         }
 
         holder.title.text = ""
-        holder.title.setBackgroundColor(R.color.white)
 
         total = sales - expenses
 
@@ -57,11 +56,9 @@ class ViewPagerAdapter(
 
         if(total > 0) {
             holder.title.text = res.getString(R.string.title_profit)
-            holder.title.setBackgroundColor(R.color.teal_200)
         }
         if(total < 0) {
             holder.title.text = res.getString(R.string.title_prejudice)
-            holder.title.setBackgroundColor(R.color.teal_700)
         }
 
         val strMoney = context.resources.getString(R.string.money)
