@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.room.Room
+import com.bumptech.glide.Glide
 import com.example.gestordeperfumaria.R
 import com.example.gestordeperfumaria.database.AppDataBase
 import com.example.gestordeperfumaria.entities.CosmeticEntity
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.hide()
+
+        Glide.with(this).load(R.drawable.gestor_de_perfumaria_icon).into(binding.imgView)
 
         db = Room.databaseBuilder(
             applicationContext,
