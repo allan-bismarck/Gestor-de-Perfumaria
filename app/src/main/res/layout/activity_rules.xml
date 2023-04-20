@@ -13,7 +13,8 @@
         android:layout_gravity="center"
         android:background="@color/light_gray"
         android:padding="15dp"
-        android:elevation="15dp">
+        android:elevation="15dp"
+        android:layout_marginHorizontal="10dp">
 
         <TextView
             android:layout_width="wrap_content"

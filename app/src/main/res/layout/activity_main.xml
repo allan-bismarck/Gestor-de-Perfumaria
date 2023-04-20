@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:layout_marginHorizontal="10dp">
 
             <Button
                 android:id="@+id/btnRegister"
@@ -40,7 +41,8 @@
                 android:layout_height="60dp"
                 android:text="@string/label_register"
                 android:layout_marginBottom="20dp"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:padding="10dp"
                 android:backgroundTint="@color/dark_yellow"
                 android:textColor="@color/yellow"
                 android:textStyle="bold"
@@ -49,9 +51,10 @@
             <Button
                 android:id="@+id/btnSearch"
                 android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:text="@string/label_search"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:padding="10dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/dark_yellow"
                 android:textColor="@color/yellow"
@@ -60,9 +63,10 @@
             <Button
                 android:id="@+id/btnMonitor"
                 android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:text="@string/label_profits"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:padding="10dp"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/dark_yellow"
                 android:textColor="@color/yellow"
@@ -71,9 +75,10 @@
             <Button
                 android:id="@+id/btnRules"
                 android:layout_width="300dp"
-                android:layout_height="60dp"
+                android:layout_height="wrap_content"
                 android:text="@string/label_rules"
-                android:textSize="20sp"
+                android:textSize="18sp"
+                android:padding="10dp"
                 android:backgroundTint="@color/dark_yellow"
                 android:textColor="@color/yellow"
                 android:textStyle="bold"
