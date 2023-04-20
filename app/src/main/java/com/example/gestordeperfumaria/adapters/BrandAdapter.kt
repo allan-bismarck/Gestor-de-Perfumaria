@@ -128,7 +128,6 @@ class BrandAdapter(
             var editProfitFloat = 0.0f
             try {
                 editProfitFloat = (editProfit.text.toString().toFloat()/100.0f)
-                Log.i("editProfitFloat", editProfitFloat.toString())
             } catch (e: Exception) {
                 Toast.makeText(context, R.string.toast_write_profit_brand, Toast.LENGTH_SHORT).show()
             }

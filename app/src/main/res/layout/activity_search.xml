@@ -158,7 +158,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/radio_date_name_brand"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -166,6 +166,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
             android:id="@+id/rv"
             />
 

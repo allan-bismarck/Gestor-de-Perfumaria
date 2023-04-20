@@ -5,5 +5,5 @@
     android:orientation="horizontal"
     android:id="@+id/textview_spinner"
     android:textColor="#000"
-    android:textSize="20sp"
+    android:textSize="22sp"
     android:padding="10dp"/>

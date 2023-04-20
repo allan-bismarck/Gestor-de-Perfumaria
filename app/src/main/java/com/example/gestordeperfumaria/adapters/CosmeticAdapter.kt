@@ -1,6 +1,8 @@
 package com.example.gestordeperfumaria.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
@@ -34,6 +36,7 @@ class CosmeticAdapter(
         val isSale = binding.isSale
         val btnEdit = binding.btnEdit
         val btnDelete = binding.btnDelete
+        val cv = binding.cv
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CosmeticViewHolder {
@@ -48,12 +51,34 @@ class CosmeticAdapter(
         return CosmeticViewHolder(view)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: CosmeticViewHolder, position: Int) {
         holder.nameCosmetic.text = cosmetics[position].name
-        holder.idBrandCosmetic.text = cosmetics[position].idBrand.toString()
         holder.dateStr.text = cosmetics[position].date
-        holder.price.text = cosmetics[position].price.toString()
-        holder.isSale.text = cosmetics[position].isSale.toString()
+
+        val priceNumber = cosmetics[position].price
+        val int = priceNumber.toString().split('.')[0]
+        var dec = priceNumber.toString().split('.')[1]
+        dec = dec.substring(0, 1)
+        holder.price.text = "${context.resources.getString(R.string.money)}$int.${dec}"
+
+        var listBrands: List<BrandEntity>
+        runBlocking {
+            listBrands = dbShowAllBrands()
+        }
+
+        listBrands.forEach {
+            if(it.id == cosmetics[position].idBrand) {
+                holder.idBrandCosmetic.text = it.name
+            }
+        }
+
+        if(cosmetics[position].isSale) {
+            holder.isSale.text = context.resources.getString(R.string.label_sale)
+        } else {
+            holder.isSale.text = context.resources.getString(R.string.label_purchase)
+        }
+
 
         holder.btnEdit.setOnClickListener {
             cosmeticEditDialog(cosmetics[position].name, cosmetics[position].idBrand, cosmetics[position].price, cosmetics[position].isSale, cosmetics[position].id, position)
