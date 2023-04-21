@@ -17,5 +17,8 @@
 
 #### Baixe o aplicativo: [Gestor de Perfumaria](https://github.com/AllanBismarck123/Gestor-de-Perfumaria/raw/main/gestor-de-perfumaria.apk)
 
+
+#### Demonstração
+
 #### Telas do aplicativo:
-<img height="480" width="270" src="screenshots/carregamento inicial.PNG" target="_blank"> <img height="480" width="270" src="screenshots/tela inicial.PNG" target="_blank"> <img height="480" width="270" src="screenshots/pesquisa pelo nome.PNG" target="_blank"> <img height="480" width="270" src="screenshots/listando busca pelo nome.PNG" target="_blank"> <img height="480" width="270" src="screenshots/pesquisa pelas preferencias.PNG" target="_blank"> <img height="480" width="270" src="screenshots/carregamento de busca.PNG" target="_blank"> <img height="480" width="270" src="screenshots/listando busca pelas preferencias.PNG" target="_blank"> <img height="480" width="270" src="screenshots/detalhes do pokemon.PNG" target="_blank"> <img height="480" width="270" src="screenshots/evolucoes do pokemon.PNG" target="_blank"> <img height="480" width="270" src="screenshots/variantes do pokemon.PNG" target="_blank">
+<img height="480" width="270" src="screens/Screenshot_20230420_014125.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014208.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014223.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014237.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014249.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014318.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014330.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014433.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014530.png" target="_blank">
