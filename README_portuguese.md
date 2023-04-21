@@ -2,9 +2,15 @@
 
 # Super Pokédex
 
-### É um aplicativo desenvolvido para exibir informações sobre os pokémons, possui as opções de busca pelo nome e também selecionando as preferências como geração do pokémon e o tipo.
+### O aplicativo permite cadastrar marcas e transações de cosméticos (compra para reposição de estoque ou vendas), além disso permite exibir todas as marcas, todos os cosméticos, bem como, a edição deles. O usuário também pode acompanhar o lucro dos últimos 12 meses com base nas transações cadastradas.
 
-### O aplicativo consome a API PokéAPI.
+### Regras de negócios:
+
+### Uma marca só pode ser deletada, se não houver nenhuma transação cadastrada com a determinada marca.
+
+### Um cosmético só pode ser cadastrado se houver pelo menos uma marca cadastrada para que seja selecionada.
+
+### As dicas de uso são mostradas em janelas de diálogo e também existe uma tela só mostrando essas regras e as dicas de uso.
 
 #### Tecnologias usadas: 
 <a target="_blank"><img height="40" width="120" src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" target="_blank"></a> <a target="_blank"><img height="40" width="150" src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" target="_blank"></a>
