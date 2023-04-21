@@ -17,8 +17,5 @@
 
 #### Baixe o aplicativo: [Gestor de Perfumaria](https://github.com/AllanBismarck123/Gestor-de-Perfumaria/raw/main/gestor-de-perfumaria.apk)
 
-
-#### Demonstração
-
 #### Telas do aplicativo:
 <img height="480" width="270" src="screens/Screenshot_20230420_014125.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014208.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014223.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014237.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014249.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014318.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014330.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014433.png" target="_blank"> <img height="480" width="270" src="screens/Screenshot_20230420_014530.png" target="_blank">
