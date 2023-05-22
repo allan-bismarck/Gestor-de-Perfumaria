@@ -65,5 +65,8 @@
     <string name="toast_brand_register_success">Brand successfully registered!</string>
     <string name="toast_cosmetic_register_success">Cosmetic successfully registered!</string>
     <string name="DATABASE_NAME">db-perfumery</string>
+    <string name="delete">Are you sure you want to delete this item?</string>
+    <string name="sim">Yes</string>
+    <string name="não">No</string>
 
 </resources>

@@ -2,7 +2,7 @@ package com.example.gestordeperfumaria.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
@@ -85,12 +85,7 @@ class CosmeticAdapter(
         }
 
         holder.btnDelete.setOnClickListener {
-            try {
-                dbDeleteCosmetic(cosmetics[position].id)
-            } catch (e: Exception) {}
-            cosmetics.removeAt(position)
-            notifyItemRemoved(position)
-            notifyItemChanged(position)
+            dialogDelete(cosmetics, position)
         }
     }
 
@@ -224,4 +219,32 @@ class CosmeticAdapter(
         var cosmeticList = async { db.cosmeticDAO.getAll() }
         return@runBlocking cosmeticList
     }.await()
+
+    private fun dialogDelete(cosmetics: MutableList<Cosmetic>, position: Int) {
+        val builder = AlertDialog.Builder(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.delete_dialog, null)
+
+        val yes = view.findViewById<Button>(R.id.delete_yes)
+        val no = view.findViewById<Button>(R.id.delete_no)
+
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.show()
+
+        no.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        yes.setOnClickListener {
+            try {
+                dbDeleteCosmetic(cosmetics[position].id)
+            } catch (e: Exception) {
+            }
+            cosmetics.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemChanged(position)
+            dialog.dismiss()
+        }
+
+    }
 }

@@ -64,5 +64,8 @@
     <string name="toast_brand_register_success">Marca cadastrada com sucesso!</string>
     <string name="toast_cosmetic_register_success">Cosmético cadastrado com sucesso!</string>
     <string name="DATABASE_NAME">db-perfumery</string>
+    <string name="delete">Tem certeza que deseja deletar esse item?</string>
+    <string name="sim">Sim</string>
+    <string name="não">Não</string>
 
 </resources>

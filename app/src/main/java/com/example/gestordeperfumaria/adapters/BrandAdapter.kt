@@ -12,6 +12,7 @@ import com.example.gestordeperfumaria.dataclasses.Brand
 import com.example.gestordeperfumaria.R
 import com.example.gestordeperfumaria.database.AppDataBase
 import com.example.gestordeperfumaria.databinding.ItemBrandBinding
+import com.example.gestordeperfumaria.dataclasses.Cosmetic
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -61,11 +62,7 @@ class BrandAdapter(
         }
 
         holder.btnDelete.setOnClickListener {
-            if(dbDeleteBrand(brands[position].id)) {
-                brands.removeAt(position)
-                notifyItemRemoved(position)
-                notifyItemChanged(position)
-            }
+            dialogDelete(brands, position)
         }
     }
 
@@ -140,5 +137,31 @@ class BrandAdapter(
                 dialog.dismiss()
             }
         }
+    }
+
+    private fun dialogDelete(brands: MutableList<Brand>, position: Int) {
+        val builder = AlertDialog.Builder(context)
+        val view = LayoutInflater.from(context).inflate(R.layout.delete_dialog, null)
+
+        val yes = view.findViewById<Button>(R.id.delete_yes)
+        val no = view.findViewById<Button>(R.id.delete_no)
+
+        builder.setView(view)
+        val dialog = builder.create()
+        dialog.show()
+
+        no.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        yes.setOnClickListener {
+            if(dbDeleteBrand(brands[position].id)) {
+                brands.removeAt(position)
+                notifyItemRemoved(position)
+                notifyItemChanged(position)
+            }
+            dialog.dismiss()
+        }
+
     }
 }
