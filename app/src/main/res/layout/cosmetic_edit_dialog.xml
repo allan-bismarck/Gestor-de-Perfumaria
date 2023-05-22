@@ -4,12 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    android:backgroundTint="@color/light_gray">
+    android:background="@color/white">
 
     <EditText
         android:id="@+id/edit_text_name_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/dark_purple"
         android:textSize="23sp"/>
 
     <Spinner
@@ -27,6 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
+        android:textColor="@color/dark_purple"
         android:textSize="23sp"/>
 
     <RadioGroup
@@ -42,6 +44,8 @@
             android:textSize="20sp"
             android:checked="true"
             android:paddingHorizontal="10dp"
+            android:textColor="@color/dark_purple"
+            android:buttonTint="@color/dark_purple"
             />
         <RadioButton android:id="@+id/btn_sale"
             android:layout_width="wrap_content"
@@ -50,6 +54,8 @@
             android:textSize="20sp"
             android:checked="false"
             android:paddingHorizontal="10dp"
+            android:textColor="@color/dark_purple"
+            android:buttonTint="@color/dark_purple"
             />
     </RadioGroup>
 
@@ -67,14 +73,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:text="@string/label_cancel"
-            android:backgroundTint="#FF0000"/>
+            android:backgroundTint="@color/pink_red"/>
 
         <Button
             android:id="@+id/edit_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_save"
-            android:backgroundTint="@color/dark_yellow"/>
+            android:textColor="@color/dark_purple"
+            android:backgroundTint="@color/yellow"/>
 
     </LinearLayout>
 

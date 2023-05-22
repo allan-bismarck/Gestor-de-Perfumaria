@@ -10,6 +10,7 @@
         android:id="@+id/edit_text_name_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/dark_purple"
         android:textSize="23sp"/>
 
     <EditText
@@ -17,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
+        android:textColor="@color/dark_purple"
         android:textSize="23sp"/>
 
     <LinearLayout
@@ -33,14 +35,15 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:text="@string/label_cancel"
-            android:backgroundTint="#FF0000"/>
+            android:backgroundTint="@color/pink_red"/>
 
         <Button
             android:id="@+id/edit_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label_save"
-            android:backgroundTint="@color/dark_yellow"/>
+            android:textColor="@color/dark_purple"
+            android:backgroundTint="@color/yellow"/>
 
     </LinearLayout>
 

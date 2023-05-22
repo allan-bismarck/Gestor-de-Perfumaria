@@ -4,6 +4,6 @@
      android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:id="@+id/textview_spinner"
-    android:textColor="#000"
+    android:textColor="@color/dark_purple"
     android:textSize="22sp"
     android:padding="10dp"/>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_yellow"
+    android:background="@color/light_pink"
     tools:context=".activities.RulesActivity">
 
     <LinearLayout
@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:background="@color/light_gray"
+        android:background="@color/yellow"
         android:padding="15dp"
         android:elevation="15dp"
         android:layout_marginHorizontal="10dp">
@@ -23,7 +23,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginBottom="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_purple"
             />
 
         <TextView
@@ -33,7 +33,7 @@
             android:textSize="20sp"
             android:justificationMode="inter_word"
             android:layout_marginBottom="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_purple"
             />
 
         <TextView
@@ -43,7 +43,7 @@
             android:textSize="20sp"
             android:justificationMode="inter_word"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_purple"
             />
 
         <TextView
@@ -53,7 +53,7 @@
             android:textSize="20sp"
             android:justificationMode="inter_word"
             android:layout_marginBottom="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_purple"
             />
 
         <TextView
@@ -63,7 +63,7 @@
             android:textSize="25sp"
             android:textStyle="bold"
             android:layout_marginBottom="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_purple"
             />
 
         <TextView
@@ -72,7 +72,7 @@
             android:text="@string/paragraph_one_usage_tips"
             android:textSize="20sp"
             android:justificationMode="inter_word"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_purple"
             />
 
     </LinearLayout>

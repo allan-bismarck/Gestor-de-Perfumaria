@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_pink"
     tools:context=".activities.SearchActivity">
 
     <EditText
@@ -17,6 +18,7 @@
         app:layout_constraintEnd_toStartOf="@+id/btn_search"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="@color/dark_purple"
         />
 
     <EditText
@@ -31,6 +33,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="invisible"
+        android:textColorHint="@color/dark_purple"
         />
 
     <EditText
@@ -45,6 +48,7 @@
         app:layout_constraintStart_toEndOf="@id/date_initial"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="invisible"
+        android:textColorHint="@color/dark_purple"
         />
 
     <Spinner
@@ -70,7 +74,7 @@
         app:layout_constraintStart_toEndOf="@+id/text_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/white"
+        android:background="@color/light_pink"
         android:layout_marginVertical="10dp"
         android:contentDescription="@string/label_to_search" />
 
@@ -93,7 +97,7 @@
             android:paddingHorizontal="10dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:buttonTint="@color/dark_yellow"
+            android:buttonTint="@color/yellow"
 
             />
         <RadioButton android:id="@+id/cosmetic"
@@ -105,7 +109,7 @@
             android:paddingHorizontal="10dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:buttonTint="@color/dark_yellow"
+            android:buttonTint="@color/yellow"
             />
     </RadioGroup>
 
@@ -128,7 +132,7 @@
             android:paddingHorizontal="10dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:buttonTint="@color/dark_yellow"
+            android:buttonTint="@color/yellow"
             />
 
         <RadioButton android:id="@+id/for_brand"
@@ -140,7 +144,7 @@
             android:paddingHorizontal="10dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:buttonTint="@color/dark_yellow"
+            android:buttonTint="@color/yellow"
             />
 
         <RadioButton android:id="@+id/date"
@@ -152,7 +156,7 @@
             android:paddingHorizontal="10dp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            android:buttonTint="@color/dark_yellow"
+            android:buttonTint="@color/yellow"
             />
     </RadioGroup>
 

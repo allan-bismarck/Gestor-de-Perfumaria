@@ -8,8 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_gray">#FFD9D9D9</color>
-    <color name="dark_yellow">#FF736002</color>
-    <color name="yellow">#FFEAF205</color>
-    <color name="yellow_700">#FFD9CB04</color>
-    <color name="yellow_500">#FFA68B05</color>
+    <color name="yellow">#FFF2B705</color>
+    <color name="light_pink">#FFC70039</color>
+    <color name="pink">#FFBF0449</color>
+    <color name="pink_red">#FFF24130</color>
+    <color name="dark_purple">#FF591948</color>
 </resources>

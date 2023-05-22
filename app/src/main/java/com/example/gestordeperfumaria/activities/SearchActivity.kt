@@ -53,7 +53,7 @@ class SearchActivity : AppCompatActivity() {
 
         val title = applicationContext.resources.getString(R.string.label_search)
         supportActionBar?.title = title
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(applicationContext.resources.getString(R.color.dark_yellow))))
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(applicationContext.resources.getString(R.color.dark_purple))))
 
         dialog()
 

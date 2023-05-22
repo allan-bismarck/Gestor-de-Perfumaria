@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/light_pink"
     android:id="@+id/linear_layout_iv">
 
         <TextView
@@ -17,7 +18,7 @@
             android:textAlignment="center"
             android:textStyle="bold"
             android:textColor="@color/yellow"
-            android:background="@color/dark_yellow"
+            android:background="@color/yellow"
             android:gravity="center" />
 
     <androidx.cardview.widget.CardView
@@ -45,7 +46,7 @@
                 android:text="@string/label_show_profits"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:textColor="@color/dark_yellow"
+                android:textColor="@color/yellow"
                 />
 
             <TextView
@@ -57,7 +58,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text=""
                 android:textSize="25sp"
-                android:textColor="@color/black"
+                android:textColor="@color/dark_purple"
                 />
 
             <TextView
@@ -70,7 +71,7 @@
                 android:text="@string/label_show_expenses"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:textColor="@color/dark_yellow"
+                android:textColor="@color/yellow"
                 />
 
             <TextView
@@ -82,7 +83,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text=""
                 android:textSize="25sp"
-                android:textColor="@color/black"
+                android:textColor="@color/dark_purple"
                 />
 
             <TextView
@@ -95,7 +96,7 @@
                 android:text="@string/label_show_balance"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:textColor="@color/dark_yellow"
+                android:textColor="@color/yellow"
                 />
 
             <TextView
@@ -107,7 +108,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text=""
                 android:textSize="25sp"
-                android:textColor="@color/black"
+                android:textColor="@color/dark_purple"
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -117,7 +118,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center"
-        android:background="@color/dark_yellow"
+        android:background="@color/yellow"
         android:elevation="15dp"
         >
 
@@ -126,7 +127,7 @@
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@drawable/baseline_arrow_back_ios_new_24"
-            android:background="@color/dark_yellow"
+            android:background="@color/yellow"
             />
 
         <TextView
@@ -138,14 +139,14 @@
             android:textAlignment="center"
             android:gravity="center"
             android:textStyle="bold"
-            android:textColor="@color/yellow"/>
+            android:textColor="@color/dark_purple"/>
 
         <ImageButton
             android:id="@+id/btn_next"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@drawable/baseline_arrow_forward_ios_24"
-            android:background="@color/dark_yellow"
+            android:background="@color/yellow"
             />
 
     </LinearLayout>

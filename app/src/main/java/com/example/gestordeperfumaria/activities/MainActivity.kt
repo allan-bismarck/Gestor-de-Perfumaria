@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        Glide.with(this).load(R.drawable.gestor_de_perfumaria_icon).into(binding.imgView)
+        //Glide.with(this).load(R.drawable.gestor_de_perfumaria_icon).into(binding.imgView)
 
         db = Room.databaseBuilder(
             applicationContext,

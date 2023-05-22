@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_yellow"
+    android:background="@color/light_pink"
     >
 
     <ImageView
         android:id="@+id/img_view"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:src="@drawable/gestor_de_perfumaria_icon_2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +21,7 @@
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        app:cardBackgroundColor="@color/light_gray"
+        app:cardBackgroundColor="@color/dark_purple"
         app:layout_constraintTop_toBottomOf="@id/img_view"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +44,8 @@
                 android:layout_marginBottom="20dp"
                 android:textSize="18sp"
                 android:padding="10dp"
-                android:backgroundTint="@color/dark_yellow"
-                android:textColor="@color/yellow"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/dark_purple"
                 android:textStyle="bold"
                 />
 
@@ -56,8 +57,8 @@
                 android:textSize="18sp"
                 android:padding="10dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/dark_yellow"
-                android:textColor="@color/yellow"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/dark_purple"
                 android:textStyle="bold"/>
 
             <Button
@@ -68,8 +69,8 @@
                 android:textSize="18sp"
                 android:padding="10dp"
                 android:layout_marginBottom="20dp"
-                android:backgroundTint="@color/dark_yellow"
-                android:textColor="@color/yellow"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/dark_purple"
                 android:textStyle="bold"/>
 
             <Button
@@ -79,8 +80,8 @@
                 android:text="@string/label_rules"
                 android:textSize="18sp"
                 android:padding="10dp"
-                android:backgroundTint="@color/dark_yellow"
-                android:textColor="@color/yellow"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/dark_purple"
                 android:textStyle="bold"
                 />
 

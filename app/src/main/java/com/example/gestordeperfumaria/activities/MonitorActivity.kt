@@ -1,5 +1,6 @@
 package com.example.gestordeperfumaria.activities
 
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -22,6 +23,7 @@ class MonitorActivity : AppCompatActivity() {
     private lateinit var db: AppDataBase
     private lateinit var months: List<String>
     private lateinit var cosmetics: List<CosmeticEntity>
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,7 +32,7 @@ class MonitorActivity : AppCompatActivity() {
 
         val title = applicationContext.resources.getString(R.string.label_profits)
         supportActionBar?.title = title
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(applicationContext.resources.getString(R.color.dark_yellow))))
+        supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(applicationContext.resources.getString(R.color.dark_purple))))
 
         db = Room.databaseBuilder(
             applicationContext,
