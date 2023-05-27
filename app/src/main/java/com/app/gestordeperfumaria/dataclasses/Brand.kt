@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria.dataclasses
+package com.app.gestordeperfumaria.dataclasses
 
 data class Brand(
     var id: Long,

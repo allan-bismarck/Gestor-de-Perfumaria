@@ -1,9 +1,9 @@
-package com.example.gestordeperfumaria.daos
+package com.app.gestordeperfumaria.daos
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.gestordeperfumaria.dataclasses.BrandWithCosmetic
+import com.app.gestordeperfumaria.dataclasses.BrandWithCosmetic
 
 @Dao
 interface BrandWithCosmeticDAO {

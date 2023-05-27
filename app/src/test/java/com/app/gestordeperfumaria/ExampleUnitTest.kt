@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria
+package com.app.gestordeperfumaria
 
 import org.junit.Test
 

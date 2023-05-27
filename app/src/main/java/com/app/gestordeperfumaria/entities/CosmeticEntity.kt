@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria.entities
+package com.app.gestordeperfumaria.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

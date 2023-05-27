@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria.adapters
+package com.app.gestordeperfumaria.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,9 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gestordeperfumaria.entities.CosmeticEntity
-import com.example.gestordeperfumaria.R
-import com.example.gestordeperfumaria.databinding.ItemViewPagerBinding
+import com.app.gestordeperfumaria.entities.CosmeticEntity
+import com.app.gestordeperfumaria.R
+import com.app.gestordeperfumaria.databinding.ItemViewPagerBinding
 import kotlin.math.exp
 
 class ViewPagerAdapter(

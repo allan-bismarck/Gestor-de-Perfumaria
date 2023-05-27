@@ -1,14 +1,14 @@
-package com.example.gestordeperfumaria.database
+package com.app.gestordeperfumaria.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.gestordeperfumaria.daos.BrandDAO
-import com.example.gestordeperfumaria.daos.BrandWithCosmeticDAO
-import com.example.gestordeperfumaria.daos.CosmeticDAO
-import com.example.gestordeperfumaria.entities.BrandEntity
-import com.example.gestordeperfumaria.entities.CosmeticEntity
+import com.app.gestordeperfumaria.daos.BrandDAO
+import com.app.gestordeperfumaria.daos.BrandWithCosmeticDAO
+import com.app.gestordeperfumaria.daos.CosmeticDAO
+import com.app.gestordeperfumaria.entities.BrandEntity
+import com.app.gestordeperfumaria.entities.CosmeticEntity
 
 @Database(entities = [BrandEntity::class, CosmeticEntity::class], version = 3)
 abstract class AppDataBase: RoomDatabase() {

@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria
+package com.app.gestordeperfumaria
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

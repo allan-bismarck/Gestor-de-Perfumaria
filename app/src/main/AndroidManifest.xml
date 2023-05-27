@@ -12,19 +12,19 @@
         android:theme="@style/Theme.GestorDePerfumaria"
         tools:targetApi="31">
         <activity
-            android:name=".activities.RulesActivity"
+            android:name="com.app.gestordeperfumaria.activities.RulesActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SearchActivity"
+            android:name="com.app.gestordeperfumaria.activities.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MonitorActivity"
+            android:name="com.app.gestordeperfumaria.activities.MonitorActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name="com.app.gestordeperfumaria.activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.app.gestordeperfumaria.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,16 +1,12 @@
-package com.example.gestordeperfumaria.activities
-
+package com.app.gestordeperfumaria.activities
 import android.content.Intent
-import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.room.Room
-import com.bumptech.glide.Glide
-import com.example.gestordeperfumaria.R
-import com.example.gestordeperfumaria.database.AppDataBase
-import com.example.gestordeperfumaria.entities.CosmeticEntity
-import com.example.gestordeperfumaria.databinding.ActivityMainBinding
+import com.app.gestordeperfumaria.R
+import com.app.gestordeperfumaria.database.AppDataBase
+import com.app.gestordeperfumaria.entities.CosmeticEntity
+import com.app.gestordeperfumaria.databinding.ActivityMainBinding
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

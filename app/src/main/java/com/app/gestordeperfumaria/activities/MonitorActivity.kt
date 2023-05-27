@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria.activities
+package com.app.gestordeperfumaria.activities
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
@@ -7,11 +7,11 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.room.Room
-import com.example.gestordeperfumaria.R
-import com.example.gestordeperfumaria.entities.CosmeticEntity
-import com.example.gestordeperfumaria.adapters.ViewPagerAdapter
-import com.example.gestordeperfumaria.database.AppDataBase
-import com.example.gestordeperfumaria.databinding.ActivityMonitorBinding
+import com.app.gestordeperfumaria.R
+import com.app.gestordeperfumaria.entities.CosmeticEntity
+import com.app.gestordeperfumaria.adapters.ViewPagerAdapter
+import com.app.gestordeperfumaria.database.AppDataBase
+import com.app.gestordeperfumaria.databinding.ActivityMonitorBinding
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat

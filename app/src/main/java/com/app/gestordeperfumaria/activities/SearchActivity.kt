@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria.activities
+package com.app.gestordeperfumaria.activities
 
 import android.content.res.Resources
 import android.graphics.Color
@@ -11,16 +11,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import com.example.gestordeperfumaria.*
-import com.example.gestordeperfumaria.adapters.BrandAdapter
-import com.example.gestordeperfumaria.adapters.CosmeticAdapter
-import com.example.gestordeperfumaria.database.AppDataBase
-import com.example.gestordeperfumaria.dataclasses.Brand
-import com.example.gestordeperfumaria.dataclasses.BrandWithCosmetic
-import com.example.gestordeperfumaria.dataclasses.Cosmetic
-import com.example.gestordeperfumaria.entities.BrandEntity
-import com.example.gestordeperfumaria.entities.CosmeticEntity
-import com.example.gestordeperfumaria.databinding.ActivitySearchBinding
+import com.app.gestordeperfumaria.*
+import com.app.gestordeperfumaria.adapters.BrandAdapter
+import com.app.gestordeperfumaria.adapters.CosmeticAdapter
+import com.app.gestordeperfumaria.database.AppDataBase
+import com.app.gestordeperfumaria.dataclasses.Brand
+import com.app.gestordeperfumaria.dataclasses.BrandWithCosmetic
+import com.app.gestordeperfumaria.dataclasses.Cosmetic
+import com.app.gestordeperfumaria.entities.BrandEntity
+import com.app.gestordeperfumaria.entities.CosmeticEntity
+import com.app.gestordeperfumaria.databinding.ActivitySearchBinding
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import java.text.ParsePosition

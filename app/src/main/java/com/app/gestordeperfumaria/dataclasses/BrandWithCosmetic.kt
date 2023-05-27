@@ -1,9 +1,9 @@
-package com.example.gestordeperfumaria.dataclasses
+package com.app.gestordeperfumaria.dataclasses
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import com.example.gestordeperfumaria.entities.BrandEntity
-import com.example.gestordeperfumaria.entities.CosmeticEntity
+import com.app.gestordeperfumaria.entities.BrandEntity
+import com.app.gestordeperfumaria.entities.CosmeticEntity
 
 data class BrandWithCosmetic(
     @Embedded val brand: BrandEntity,

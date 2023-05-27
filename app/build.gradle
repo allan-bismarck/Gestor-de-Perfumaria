@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.gestordeperfumaria'
+    namespace 'com.app.gestordeperfumaria'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.gestordeperfumaria"
+        applicationId "com.app.gestordeperfumaria"
         minSdk 26
         targetSdk 33
         versionCode 1

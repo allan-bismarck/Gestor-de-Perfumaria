@@ -1,11 +1,8 @@
-package com.example.gestordeperfumaria.activities
-
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
+package com.app.gestordeperfumaria.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.gestordeperfumaria.R
-import com.example.gestordeperfumaria.databinding.ActivityRulesBinding
+import com.app.gestordeperfumaria.R
+import com.app.gestordeperfumaria.databinding.ActivityRulesBinding
 
 class RulesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRulesBinding

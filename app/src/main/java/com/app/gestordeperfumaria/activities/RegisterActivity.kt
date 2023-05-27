@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria.activities
+package com.app.gestordeperfumaria.activities
 
 import android.annotation.SuppressLint
 import android.content.res.Resources
@@ -13,11 +13,11 @@ import android.widget.Toast
 import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.room.Room
-import com.example.gestordeperfumaria.entities.BrandEntity
-import com.example.gestordeperfumaria.entities.CosmeticEntity
-import com.example.gestordeperfumaria.R
-import com.example.gestordeperfumaria.database.AppDataBase
-import com.example.gestordeperfumaria.databinding.ActivityRegisterBinding
+import com.app.gestordeperfumaria.entities.BrandEntity
+import com.app.gestordeperfumaria.entities.CosmeticEntity
+import com.app.gestordeperfumaria.R
+import com.app.gestordeperfumaria.database.AppDataBase
+import com.app.gestordeperfumaria.databinding.ActivityRegisterBinding
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

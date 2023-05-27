@@ -1,4 +1,4 @@
-package com.example.gestordeperfumaria.adapters
+package com.app.gestordeperfumaria.adapters
 
 import android.content.Context
 import android.util.Log
@@ -8,11 +8,11 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.Room
-import com.example.gestordeperfumaria.dataclasses.Brand
-import com.example.gestordeperfumaria.R
-import com.example.gestordeperfumaria.database.AppDataBase
-import com.example.gestordeperfumaria.databinding.ItemBrandBinding
-import com.example.gestordeperfumaria.dataclasses.Cosmetic
+import com.app.gestordeperfumaria.dataclasses.Brand
+import com.app.gestordeperfumaria.R
+import com.app.gestordeperfumaria.database.AppDataBase
+import com.app.gestordeperfumaria.databinding.ItemBrandBinding
+import com.app.gestordeperfumaria.dataclasses.Cosmetic
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
