@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.RegisterActivity"
-    android:background="@color/light_pink">
+    android:background="@color/light_gray">
 
     <RadioGroup
         android:layout_gravity="center_horizontal"
@@ -28,7 +28,7 @@
             android:paddingHorizontal="10dp"
             android:textStyle="bold"
             android:textColor="@color/dark_purple"
-            android:buttonTint="@color/yellow"
+            android:buttonTint="@color/light_pink"
             />
         <RadioButton android:id="@+id/btnRegisterCosmetic"
             android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
             android:checked="false"
             android:paddingHorizontal="10dp"
             android:textStyle="bold"
-            android:buttonTint="@color/yellow"
+            android:buttonTint="@color/light_pink"
             android:textColor="@color/dark_purple"
             />
     </RadioGroup>
@@ -171,8 +171,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="@color/yellow"
-        android:textColor="@color/dark_purple"
+        android:backgroundTint="@color/light_pink"
+        android:textColor="@color/white"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
